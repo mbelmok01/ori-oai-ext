@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+	<groupId>org.orioai</groupId>
+	<artifactId>ori-oai-ext</artifactId>
+        <version>2.0.0</version>
+    </parent>
+
+    <artifactId>ori-oai-ext-hal-vocab</artifactId>
+    <packaging>jar</packaging>
+    <name>ori-oai-ext-hal-vocab</name>
+
+    <dependencies>
+	<!-- ORI-OAI-EXT (sibling, i.e inter modules) dependencies ! -->
+	<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>ori-oai-ext-core</artifactId>
+	    <version>${project.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>ori-oai-ext-hal</artifactId>
+	    <version>${project.version}</version>
+	</dependency>
+	<!-- JUST FOR ori-oai-ext-hal !! -->
+	<dependency>
+	    <groupId>org.apache.axis</groupId>
+	    <artifactId>com.springsource.org.apache.axis</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.solr</groupId>
+	    <artifactId>solr-solrj</artifactId>
+	    <version>${solr.version}</version>
+	    <exclusions>
+	        <!-- Avoid conflicts with htmlunit -->
+	        <!--exclusion>
+	            <groupId>org.apache.httpcomponents</groupId>
+	            <artifactId>httpclient</artifactId>
+	        </exclusion>
+	        <exclusion>
+	            <groupId>org.apache.httpcomponents</groupId>
+	            <artifactId>httpmime</artifactId>
+	        </exclusion-->
+	    </exclusions>
+	</dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>org.orioai.ext.halvocab.batch.GetVocabs</mainClass>
+                    <arguments>
+                        <argument>/tmp/testvocabs</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.build.directory}/ori-oai-ext-hal-vocab.jar</outputFile>
+                            <transformers>
+                                <!-- to avoid "Unable to locate Spring NamespaceHandler for XML schema namespace"
+                                 exception (cf. http://robert-reiz.com/2011/11/14/832/) -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.handlers</resource>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/spring.schemas</resource>
+                                </transformer>
+                                <!-- signals the main class -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.orioai.ext.halvocab.batch.GetVocabs</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <!-- to avoid  java.lang.SecurityException: Invalid signature file digest for Manifest main attributes
+                                (cf. http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar) -->
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- IN DEVELOPMENT ONLY : see doc/ori-oai-ext-hal.pdf to get info about
+            the modifications to apply to the generated sources -->
+            <!-- <plugin> -->
+	    <!--     <groupId>org.codehaus.mojo</groupId> -->
+	    <!--     <artifactId>axistools-maven-plugin</artifactId> -->
+	    <!--     <version>1.4</version> -->
+	    <!--     <configuration> -->
+	    <!--         <debug>true</debug> -->
+	    <!--         <useEmitter>true</useEmitter> -->
+            <!--         <noWrapped>false</noWrapped> -->
+            <!--         <wrapArrays>false</wrapArrays> -->
+            <!--         <mappings> -->
+            <!--             <mapping> -->
+            <!--                 <namespace>http://paol.ccsd.cnrs.fr/ws/ref.php</namespace> -->
+            <!--                 <targetPackage>fr.archives_ouvertes.hal.ws.ref_php</targetPackage> -->
+            <!--             </mapping> -->
+            <!--         </mappings> -->
+	    <!--         <runTestCasesAsUnitTests>false</runTestCasesAsUnitTests> -->
+	    <!--         <serverSide>false</serverSide> -->
+	    <!--         <subPackageByFileName>false</subPackageByFileName> -->
+	    <!--         <testCases>false</testCases> -->
+	    <!--         <username>${hal.username}</username> -->
+	    <!--         <password>${hal.password}</password> -->
+	    <!--         <urls> -->
+	    <!--     	<url>${hal.ref.wsdl.url}</url> -->
+	    <!--         </urls> -->
+	    <!--     </configuration> -->
+	    <!--     <executions> -->
+	    <!--         <execution> -->
+	    <!--     	<goals> -->
+	    <!--     	    <goal>wsdl2java</goal> -->
+	    <!--     	</goals> -->
+	    <!--         </execution> -->
+	    <!--     </executions> -->
+	    <!-- </plugin> -->
+	</plugins>
+    </build>
+
+    <properties>
+	<solr.version>4.0.0</solr.version>
+	<hal.username>test_ws</hal.username>
+	<hal.password>test</hal.password>
+	<hal.ref.test.wsdl.url>http://paol.ccsd.cnrs.fr/ws/ref.php?wsdl</hal.ref.test.wsdl.url>
+        <hal.ref.wsdl.url>http://hal.archives-ouvertes.fr/ws/ref.php?wsdl</hal.ref.wsdl.url>
+    </properties>
+
+</project>

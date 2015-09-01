@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:hal="http://hal.archives-ouvertes.fr/">
+    <text>
+        <body>
+            <listBibl>
+                <biblFull>
+                    <titleStmt>
+                        <title xml:lang="fr">Etude des dimuons de la région des masses intermédiaires produits dans les collisions d'ions lourds auprès du SPS du CERN</title>
+                        <title xml:lang="en">IMR dimuon production with the CERN SPS heavy-ion collisions</title>
+                        <author role="aut">
+                            <idno type="halauthor">661418</idno>
+                            <affiliation ref="#struct-2"></affiliation>
+                        </author>
+                        <funder ref="#projanr-1"/>
+                    </titleStmt>
+                    <editionStmt>
+                        <edition>
+                            <ref type="file" subtype="author" target="these-vol1.pdf" n="1"/>
+                            <ref type="file" subtype="author" target="these-vol2.pdf" n="0"/>
+                            <ref type="annex" target="these-annex.pdf" subtype="other" n="1"/>
+                            <ref type="annex" target="pres.ppt" subtype="presentation" n="0">
+                                <desc>Présentation lors de la soutenance</desc>
+                            </ref>
+                        </edition>
+                    </editionStmt>
+                    <seriesStmt>
+                        <idno type="stamp" n="IPNL"/>
+                        <idno type="stamp" n="UNIV-LYON1"/>
+                    </seriesStmt>
+                    <sourceDesc>
+                        <biblStruct>
+                            <analytic>
+                                <title xml:lang="fr">Etude des dimuons de la région des masses intermédiaires produits dans les collisions d'ions lourds auprès du SPS du CERN</title>
+                                <title xml:lang="en">IMR dimuon production with the CERN SPS heavy-ion collisions</title>
+                                <author role="aut">
+                                    <idno type="halAuthorId">661418</idno>
+                                    <affiliation ref="#struct-2"></affiliation>
+                                </author>
+                            </analytic>
+                            <monogr>
+                                <idno type="nnt">2001LYO10009</idno>
+                                <idno type="localRef">LYCEN T 2001-21</idno>
+                                <imprint>
+                                    <date type="dateDefended">2001-03-14</date>
+                                </imprint>
+                                <authority type="institution">Université Claude Bernard - Lyon I</authority>
+                                <authority type="school">ED185</authority>
+                                <authority type="supervisor">Guichard Alain</authority>
+                                <authority type="jury">M. Guy Chanfray [Président]</authority>
+                                <authority type="jury">M. Yves Déclais</authority>
+                                <authority type="jury">M. Robert Frascaria</authority>
+                                <authority type="jury">M. Alain Guichard [Directeur de thèse]</authority>
+                                <authority type="jury">M. Louis Kluberg [Rapporteur]</authority>
+                                <authority type="jury">M. Carlos Lourenço [Rapporteur]</authority>
+                            </monogr>
+                            <ref type="seeAlso">http://weblib.cern.ch/abstract?CERN-THESIS-2001-003</ref>
+                        </biblStruct>
+                    </sourceDesc>
+                    <profileDesc>
+                        <langUsage>
+                            <language ident="fr"></language>
+                        </langUsage>
+                        <textClass>
+                            <keywords scheme="author">
+                                <term xml:lang="fr">NA50</term>
+                                <term xml:lang="fr">QGP</term>
+                                <term xml:lang="fr">Dimuons</term>
+                                <term xml:lang="fr">IMR</term>
+                                <term xml:lang="fr">Dimuons thermiques</term>
+                                <term xml:lang="fr">Drell-Yan</term>
+                                <term xml:lang="fr">Mésons charmés</term>
+                            </keywords>
+                            <classCode scheme="halDomain" n="phys.hexp"/>
+                            <classCode scheme="halDomain" n="phys.phys.phys-atom-ph"/>
+                            <classCode scheme="halDomain" n="phys.nexp"/>
+                            <classCode scheme="halTypology" n="THESE"/>
+                        </textClass>
+                        <abstract xml:lang="fr">Dans cette thèse, nous étudions la production des dimuons dans une région de masse entre les résonances Phi et J/Psi (Région des Masses Intermédiaires, IMR) dans les collisions proton-noyau et noyau-noyau de haute énergie.&lt;br /&gt;&lt;br /&gt;L'expérience NA50, installée auprès de l'accélérateur SPS du CERN, détecte les paires de muons émises dans ces interactions au moyen d'un spectromètre spécifique. La mesure de la centralité des collisions repose sur trois détecteurs indépendants : un calorimètre électromagnétique, un détecteur de multiplicité et un calorimètre à zéro degré.&lt;br /&gt;&lt;br /&gt;Les résultats des analyses proton-noyau fournissent une valeur de référence pour l'étude des interactions noyau-noyau. Les distributions expérimentales, corrigées de l'acceptance et de la résolution par une méthode quadri-dimensionnelle, des dimuons IMR sont correctement reproduites par la superposition des processus conventionnels DY et DDbar (désintégration des mésons charmés). L'extrapolation linéaire avec le nombre de masse des noyaux des résultats p-A aux collisions S-U et Pb-Pb, sous-estime systématiquement les spectres mesurés dans la région des masses intermédiaires.&lt;br /&gt;&lt;br /&gt;Cet excès de dimuons IMR augmente avec la centralité des collisions. Plusieurs modèles théoriques sont présentés et comparés aux données noyau-noyau. Nous montrons qu'un modèle basé sur la diffusion des mésons D et Dbar dans l'état final ne reproduit pas les distributions expérimentales. Finalement, cette étude permet de proposer deux explications possibles de l'excès observé. Les spectres noyau-noyau peuvent être reproduits soit par une augmentation de la production de charme soit par la présence de dimuons thermiques émis par un milieu dense et chaud.</abstract>
+                        <abstract xml:lang="en">In this thesis, we study the dimuon production in the mass range between the Phi and the J/Psi resonances (the Intermediate Mass Region, IMR) in proton-nucleus and nucleus-nucleus collisions.&lt;br /&gt;&lt;br /&gt;The NA50 experiment, at the CERN-SPS, detects muons pairs emitted in these interactions by means of a dedicated spectrometer. The centrality measurement of the collisions rests on three independent detectors: an electromagnetic calorimeter, a multiplicity detector and a zero degree hadron calorimeter.&lt;br /&gt;&lt;br /&gt;The proton-nucleus analysis results provide a reference value for the nucleus-nucleus interaction studies. The IMR experimental distributions, corrected for acceptance and resolution effects of the apparatus using a four dimensional deconvolution method, are correctly reproduced by the superposition of the conventional processes, namely Drell-Yan (DY) and semi-leptonic decay of D and Dbar mesons (DDbar). Linear extrapolation with the nucleus mass number of p-A results to S-U and Pb-Pb collisions systematically underestimates the measured spectra in the intermediate mass region.&lt;br /&gt;&lt;br /&gt;This excess of IMR dimuons increases with the centrality of the collisions. Several models are presented and compared with the nucleus-nucleus data. We show that a model based on D-mesons final state rescattering cannot reproduce the experimental distributions. Finally, this study propose two possible explanations of the observed excess. The nucleus-nucleus data can be reproduced either by an increase of the charm production or by the radiation of thermal dimuons in a dense and hot medium.</abstract>
+                    </profileDesc>
+                </biblFull>
+            </listBibl>
+        </body>
+        <back>
+            <listOrg type="laboratories">
+                <org type="laboratory" xml:id="struct-2"/>
+            </listOrg>
+        </back>
+    </text>
+</TEI>

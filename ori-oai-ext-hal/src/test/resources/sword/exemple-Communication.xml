@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:hal="http://hal.archives-ouvertes.fr/">
+    <text>
+        <body>
+            <listBibl>
+                <biblFull>
+                    <titleStmt>
+                        <title xml:lang="en">Symbol Recognition Contest: A Synthesis</title>
+                        <author role="rsp">
+                            <idno type="halauthor">131247</idno>
+                        </author>
+                        <author role="aut">
+                            <persName>
+                                <forename type="first">Philippe</forename>
+                                <surname>Dosch</surname>
+                            </persName>
+                            <affiliation ref="#localStruct-1"></affiliation>
+                            <affiliation ref="#struct-2"></affiliation>
+                        </author>
+                    </titleStmt>
+                    <editionStmt>
+                        <edition>
+                            <ref type="file" target="communication.pdf" subtype="author" n="1"/>
+                        </edition>
+                    </editionStmt>
+                    <notesStmt>
+                        <note type="commentary">Colloque avec actes et comité de lecture. internationale.</note>
+                        <note type="audience" n="2"/>
+                        <note type="invited" n="0"/>
+                        <note type="popular" n="0"/>
+                        <note type="peer" n="1"/>
+                        <note type="proceedings" n="1"/>
+                    </notesStmt>
+                    <sourceDesc>
+                        <biblStruct>
+                            <analytic>
+                                <title xml:lang="en">Symbol Recognition Contest: A Synthesis</title>
+                                <author role="rsp">
+                                    <idno type="halauthor">131247</idno>
+                                </author>
+                                <author role="aut">
+                                    <persName>
+                                        <forename type="first">Philippe</forename>
+                                        <surname>Dosch</surname>
+                                    </persName>
+                                    <affiliation ref="#localStruct-1"></affiliation>
+                                    <affiliation ref="#struct-2"></affiliation>
+                                </author>
+                            </analytic>
+                            <monogr>
+                                <meeting>
+                                    <title>Graphics Recognition: Recent Advances and Perspectives, Fifth International Workshop - GREC 2003</title>
+                                    <date type="start">2004</date>
+                                    <settlement>Barcelone</settlement>
+                                    <country key="SP"/>
+                                </meeting>
+                                <respStmt>
+                                    <resp>conferenceOrganizer</resp>
+                                    <name>Josep Lladós</name>
+                                </respStmt>
+                                <editor>Josep Lladós and Young-Bin Kwon</editor>
+                                <imprint>
+                                    <publisher>Springer-Verlag</publisher>
+                                    <biblScope unit="serie">Lecture Notes in Computer Science</biblScope>
+                                    <biblScope unit="volume">3088</biblScope>
+                                    <biblScope unit="pp">368-385</biblScope>
+                                    <date type="datePub">2004</date>
+                                </imprint>
+                            </monogr>
+                            <idno type="sciencespo">2441/smhihtn178s0ot70fs1lscbbm</idno>
+                        </biblStruct>
+                    </sourceDesc>
+                    <profileDesc>
+                        <langUsage>
+                            <language ident="en"></language>
+                        </langUsage>
+                        <textClass>
+                            <keywords scheme="author">
+                                <term xml:lang="en">performance evaluation</term>
+                                <term xml:lang="en">symbol recognition</term>
+                                <term xml:lang="en">graphical documents</term>
+                                <term xml:lang="fr">évaluation de performances</term>
+                                <term xml:lang="fr">reconnaissance de symboles</term>
+                                <term xml:lang="fr">documents graphiques</term>
+                            </keywords>
+                            <classCode scheme="halDomain" n="info.info-oh"></classCode>
+                            <classCode scheme="halTypology" n="COMM"></classCode>
+                        </textClass>
+                        <abstract xml:lang="en">In this paper, we present the synthesis of the first international symbol recognition contest, held during the fifth IAPR workshop on graphics recognition in Barcelona. We describe the framework of the contest (goals, kind of symbols, criteria of evaluation) and how the contest was organized. We expose in particular the way we have built the symbol database and which methods have been used to introduce noise in the model of the symbols, in order to evaluate the robustness of the recognition methods. The methods of the different participants are summarily described as well as the results obtained with these methods on the test images available during the contest. The evaluation protocol is presented, the results are analyzed and we conclude with some remarks for the next symbol recognition contest.</abstract>
+                    </profileDesc>
+                </biblFull>
+            </listBibl>
+        </body>
+        <back>
+            <listOrg type="laboratories">
+                <org type="laboratory" xml:id="struct-2"/>
+                <org type="laboratory" xml:id="localStruct-1">
+                    <orgName>QGAR</orgName>
+                    <orgName type="acronym">INRIA Lorraine - LORIA</orgName>
+                    <desc>
+                        <address>
+                            <country key="FR"/>
+                        </address>
+                    </desc>
+                    <listRelation>
+                        <relation name="UMR7503" active="#struct-300000"/>
+                        <relation active="#struct-300009"/>
+                        <relation active="#localStruct-2"/>
+                    </listRelation>
+                </org>
+                <org type="institution" xml:id="struct-300000"/>
+                <org type="institution" xml:id="struct-300009"/>
+                <org type="institution" xml:id="localStruct-2">
+                    <orgName>INRIA</orgName>
+                    <desc>
+                        <address>
+                            <country key="FR"/>
+                        </address>
+                    </desc>
+                </org>
+            </listOrg>
+        </back>
+    </text>
+</TEI>

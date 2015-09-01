@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dcfr:dc xmlns:dcfr="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns:dc="http://purl.org/dc/elements/1.1/"
+         xmlns:dcterms="http://purl.org/dc/terms/">
+
+    
+    <dc:title xml:lang="fr"/>
+
+    <dc:description xsi:type="dcfr:version"/>
+
+    <dc:type xsi:type="dcfr:publicationType">COVS</dc:type>
+
+    <dcterms:abstract xml:lang="fr"/>
+
+    <dc:description/>
+
+    <dc:language/>
+
+    
+
+    
+
+    <dcterms:bibliographicCitation>. &lt;i&gt;&lt;/i&gt;. editeur, 2010, 78 p.</dcterms:bibliographicCitation>
+
+    
+
+    <dc:title xsi:type="dcfr:referenceTitle">Chapitre d'ouvrage scientifique</dc:title>
+ <dc:publisher xsi:type="dcfr:referencePublisher">editeur</dc:publisher>
+ <dcterms:extent xsi:type="dcfr:referenceExtent">78</dcterms:extent>
+ <dcterms:issued xsi:type="dcfr:referenceIssued">2010</dcterms:issued>
+ <dc:relation xsi:type="dcfr:file"/>
+
+    <dc:format/>
+
+    <dcterms:accessRights xsi:type="dcfr:envoi_HAL">file_no_hal</dcterms:accessRights>
+
+    <dc:rights/>
+
+    <dc:identifier xsi:type="dcfr:local_id"/>
+
+    <dc:identifier xsi:type="dcfr:hal_id"/>
+
+    
+
+</dcfr:dc>

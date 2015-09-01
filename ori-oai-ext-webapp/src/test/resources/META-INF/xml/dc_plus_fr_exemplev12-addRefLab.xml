@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dcfr:dc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	 xmlns:dc="http://purl.org/dc/elements/1.1/" 
+	 xmlns:dcfr="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/" 
+	 xmlns:dcterms="http://purl.org/dc/terms/">
+
+    <dc:creator xsi:type="dcfr:people" dcfr:appid="9999" dcfr:affid="" dcfr:extid="">Neuville, Grégoire</dc:creator>
+
+    <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="9999" dcfr:affid="aff1" 
+		    dcfr:extid="" dcfr:adresse_labo="" dcfr:pays_labo="FR">LNL,Le Nouveau Labo</dc:contributor>
+
+    <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="aff1" dcfr:extid="">Univ Bidon</dc:contributor>
+
+</dcfr:dc>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping xmlns="http://castor.exolab.org/" xmlns:cst="http://castor.exolab.org/">
+    <description xmlns="">
+    Castor generated mapping file</description>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.AutLabStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.AutLabStruct</description>
+        <map-to xml="aut-lab-struct"/>
+        <field name="authors" type="fr.archives_ouvertes.hal.ws.submit_php.AuthorStruct" collection="array">
+            <bind-xml name="authors" node="element"/>
+        </field>
+        <field name="labs" type="fr.archives_ouvertes.hal.ws.submit_php.LaboratoryStruct" collection="array">
+            <bind-xml name="labs" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.MetasStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.MetasStruct</description>
+        <map-to xml="metas-struct"/>
+        <field name="metaAutLab" type="fr.archives_ouvertes.hal.ws.submit_php.AutLabStruct">
+            <bind-xml name="meta-aut-lab" node="element"/>
+        </field>
+        <field name="metaSimple" type="fr.archives_ouvertes.hal.ws.submit_php.MetaStruct" collection="array">
+            <bind-xml name="meta-simple" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.ContributorStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.ContributorStruct</description>
+        <map-to xml="contributor-struct"/>
+        <field name="email" type="java.lang.String">
+            <bind-xml name="email" node="element"/>
+        </field>
+        <field name="lastName" type="java.lang.String">
+            <bind-xml name="last-name" node="element"/>
+        </field>
+        <field name="firstName" type="java.lang.String">
+            <bind-xml name="first-name" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.LaboratoryStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.LaboratoryStruct</description>
+        <map-to xml="laboratory-struct"/>
+        <field name="knownLabid" type="int">
+            <bind-xml name="known-labid" node="attribute"/>
+        </field>
+        <field name="labId" type="int">
+            <bind-xml name="lab-id" node="attribute"/>
+        </field>
+        <field name="shortName" type="java.lang.String">
+            <bind-xml name="short-name" node="element"/>
+        </field>
+        <field name="address" type="java.lang.String">
+            <bind-xml name="address" node="element"/>
+        </field>
+        <field name="url" type="java.lang.String">
+            <bind-xml name="url" node="element"/>
+        </field>
+        <field name="name" type="java.lang.String">
+            <bind-xml name="name" node="element"/>
+        </field>
+        <field name="affiliation" type="java.lang.String" collection="array">
+            <bind-xml name="affiliation" node="element"/>
+        </field>
+        <field name="pays" type="java.lang.String">
+            <bind-xml name="pays" node="element"/>
+        </field>
+    </class>
+    <class name="org.orioai.ext.hal.beans.HalDTO">
+        <description xmlns="">
+        Default mapping for class org.orioai.ext.hal.beans.HalDTO</description>
+        <map-to xml="hal-dTO"/>
+        <field name="laboratories" type="fr.archives_ouvertes.hal.ws.submit_php.LaboratoryStruct" collection="array">
+            <bind-xml name="laboratories" node="element"/>
+        </field>
+        <field name="authors" type="fr.archives_ouvertes.hal.ws.submit_php.AuthorStruct" collection="array">
+            <bind-xml name="authors" node="element"/>
+        </field>
+        <field name="fullTextStruct" type="fr.archives_ouvertes.hal.ws.submit_php.FullTextStruct">
+            <bind-xml name="full-text-struct" node="element"/>
+        </field>
+        <field name="contributor" type="fr.archives_ouvertes.hal.ws.submit_php.ContributorStruct">
+            <bind-xml name="contributor" node="element"/>
+        </field>
+        <field name="simplesMetadatas" type="fr.archives_ouvertes.hal.ws.submit_php.MetaStruct" collection="array">
+            <bind-xml name="simples-metadatas" node="element"/>
+        </field>
+        <field name="artIdentStruct" type="fr.archives_ouvertes.hal.ws.submit_php.ArticleIdentStruct">
+            <bind-xml name="art-ident-struct" node="element"/>
+        </field>
+        <field name="halPortalName" type="java.lang.String">
+            <bind-xml name="hal-portal-name" node="element"/>
+        </field>
+        <field name="metadatas" type="fr.archives_ouvertes.hal.ws.submit_php.MetasStruct">
+            <bind-xml name="metadatas" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.FullTextStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.FullTextStruct</description>
+        <map-to xml="full-text-struct"/>
+        <field name="right" type="int">
+            <bind-xml name="right" node="attribute"/>
+        </field>
+        <field name="files" type="fr.archives_ouvertes.hal.ws.submit_php.FileStruct" collection="array">
+            <bind-xml name="files" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.MetaStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.MetaStruct</description>
+        <map-to xml="meta-struct"/>
+        <field name="metaValue" type="java.lang.String">
+            <bind-xml name="meta-value" node="element"/>
+        </field>
+        <field name="metaName" type="java.lang.String">
+            <bind-xml name="meta-name" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.AuthorStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.AuthorStruct</description>
+        <map-to xml="author-struct"/>
+        <field name="corresponding" type="boolean">
+            <bind-xml name="corresponding" node="attribute"/>
+        </field>
+        <field name="url" type="java.lang.String">
+            <bind-xml name="url" node="element"/>
+        </field>
+        <field name="labIds" type="int" collection="array">
+            <bind-xml name="lab-ids" node="element"/>
+        </field>
+        <field name="otherName" type="java.lang.String">
+            <bind-xml name="other-name" node="element"/>
+        </field>
+        <field name="organism" type="java.lang.String">
+            <bind-xml name="organism" node="element"/>
+        </field>
+        <field name="email" type="java.lang.String">
+            <bind-xml name="email" node="element"/>
+        </field>
+        <field name="firstName" type="java.lang.String">
+            <bind-xml name="first-name" node="element"/>
+        </field>
+        <field name="researchTeam" type="java.lang.String">
+            <bind-xml name="research-team" node="element"/>
+        </field>
+        <field name="lastName" type="java.lang.String">
+            <bind-xml name="last-name" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.FileStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.FileStruct</description>
+        <map-to xml="file-struct"/>
+        <field name="local" type="boolean">
+            <bind-xml name="local" node="attribute"/>
+        </field>
+        <field name="name" type="java.lang.String">
+            <bind-xml name="name" node="element"/>
+        </field>
+        <field name="content" type="java.lang.String">
+            <bind-xml name="content" node="element"/>
+        </field>
+        <field name="md5" type="java.lang.String">
+            <bind-xml name="md5" node="element"/>
+        </field>
+        <field name="format" type="java.lang.String">
+            <bind-xml name="format" node="element"/>
+        </field>
+        <field name="mainWebFile" type="java.lang.String">
+            <bind-xml name="main-web-file" node="element"/>
+        </field>
+    </class>
+    <class name="fr.archives_ouvertes.hal.ws.submit_php.ArticleIdentStruct">
+        <description xmlns="">
+        Default mapping for class fr.archives_ouvertes.hal.ws.submit_php.ArticleIdentStruct</description>
+        <map-to xml="article-ident-struct"/>
+        <field name="version" type="int">
+            <bind-xml name="version" node="attribute"/>
+        </field>
+        <field name="passwd" type="java.lang.String">
+            <bind-xml name="passwd" node="element"/>
+        </field>
+        <field name="identifiant" type="java.lang.String">
+            <bind-xml name="identifiant" node="element"/>
+        </field>
+    </class>
+</mapping>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+	<groupId>org.orioai</groupId>
+	<artifactId>ori-oai-ext</artifactId>
+        <version>2.0.0</version>
+    </parent>
+
+    <artifactId>ori-oai-ext-hal</artifactId>
+    <packaging>jar</packaging>
+    <name>ori-oai-ext-hal</name>
+
+    <!-- <profiles> -->
+    <!--     <profile> -->
+    <!--         <id>generate-halsubmit-sources</id> -->
+    <!--         <activation> -->
+    <!--             <property> -->
+    <!--                 <name>gensources</name> -->
+    <!--                 <value>submit</value> -->
+    <!--             </property> -->
+    <!--         </activation> -->
+    <!--         <properties> -->
+    <!--             <hal.used.wsdl>${hal.submit.test.wsdl.url}</hal.used.wsdl> -->
+    <!--             <hal.generated.package>org.orioai.ext.hal.services.remote.axisgen</hal.generated.package> -->
+    <!--         </properties> -->
+    <!--     </profile> -->
+    <!--     <profile> -->
+    <!--         <id>generate-halref-sources</id> -->
+    <!--         <activation> -->
+    <!--             <property> -->
+    <!--                 <name>gensources</name> -->
+    <!--                 <value>ref</value> -->
+    <!--             </property> -->
+    <!--         </activation> -->
+    <!--         <properties> -->
+    <!--             <hal.used.wsdl>${hal.ref.test.wsdl.url}</hal.used.wsdl> -->
+    <!--             <hal.generated.package>org.orioai.ext.hal.services.remote.axisgen.ref</hal.generated.package> -->
+    <!--         </properties> -->
+    <!--     </profile> -->
+    <!-- </profiles> -->
+
+    <dependencies>
+	<!-- ORI-OAI-EXT (sibling, i.e inter modules) dependencies ! -->
+	<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>ori-oai-ext-core</artifactId>
+	    <version>${project.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>${project.groupId}</groupId>
+	    <artifactId>ori-oai-ext-download</artifactId>
+	    <version>${project.version}</version>
+	</dependency>
+	<!-- JUST FOR ori-oai-ext-hal !! -->
+	<dependency>
+	    <groupId>org.apache.axis</groupId>
+	    <artifactId>com.springsource.org.apache.axis</artifactId>
+	    <version>1.4.0</version>
+	</dependency>
+        <!-- <dependency> -->
+        <!--     <groupId>org.apache.bsf</groupId> -->
+        <!--     <artifactId>com.springsource.org.apache.bsf</artifactId> -->
+        <!--     <version>2.4.0</version> -->
+        <!-- </dependency> -->
+        <!-- <dependency> -->
+        <!--     <groupId>oracle.a.la.con</groupId> -->
+        <!--     <artifactId>jimi</artifactId> -->
+        <!--     <version>1</version> -->
+        <!--     <scope>system</scope> -->
+            <!-- <systemPath>${basedir}/src/main/resources/lib/jimi.jar</systemPath> -->
+        <!--     <systemPath>/home/gneuvill/ori/src/ori-oai-ext-1.7/ori-oai-ext-hal/src/main/resources/lib/jimi.jar</systemPath> -->
+        <!-- </dependency> -->
+        <dependency>
+            <groupId>org.swordapp</groupId>
+            <artifactId>sword2-client</artifactId>
+            <version>0.9</version>
+        </dependency>
+        <dependency>
+			<groupId>org.apache.abdera</groupId>
+			<artifactId>abdera-client</artifactId>
+			<version>1.1.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-stax-api_1.0_spec</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-activation_1.1_spec</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-activation_1.0.2_spec</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-javamail_1.4_spec</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.codehaus.woodstox</groupId>
+					<artifactId>wstx-asl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>jaxen</groupId>
+					<artifactId>jaxen</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>xom</groupId>
+			<artifactId>xom</artifactId>
+			<version>1.2.5</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>xml-apis</artifactId>
+					<groupId>xml-apis</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xalan</artifactId>
+					<groupId>xalan</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>xercesImpl</artifactId>
+					<groupId>xerces</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- IN DEVELOPMENT ONLY : see doc/ori-oai-ext-hal.pdf to get info about
+            the modifications to apply to the generated sources -->
+            <!-- <plugin> -->
+	    <!--     <groupId>org.codehaus.mojo</groupId> -->
+	    <!--     <artifactId>axistools-maven-plugin</artifactId> -->
+	    <!--     <version>1.4</version> -->
+	    <!--     <configuration> -->
+	    <!--         <debug>true</debug> -->
+	    <!--         <useEmitter>true</useEmitter> -->
+            <!--         <noWrapped>false</noWrapped> -->
+            <!--         <wrapArrays>false</wrapArrays> -->
+            <!--         <mappings> -->
+            <!--             <mapping> -->
+            <!--                 <namespace>http://paol.ccsd.cnrs.fr/ws/submit.php</namespace> -->
+            <!--                 <targetPackage>fr.archives_ouvertes.hal.ws.submit_php</targetPackage> -->
+            <!--             </mapping> -->
+            <!--             <mapping> -->
+            <!--                 <namespace>http://paol.ccsd.cnrs.fr/ws/ref.php</namespace> -->
+            <!--                 <targetPackage>fr.archives_ouvertes.hal.ws.ref_php</targetPackage> -->
+            <!--             </mapping> -->
+            <!--             <mapping> -->
+            <!--                 <namespace>http://paol.ccsd.cnrs.fr/ws/search.php</namespace> -->
+            <!--                 <targetPackage>fr.archives_ouvertes.hal.ws.search_php</targetPackage> -->
+            <!--             </mapping> -->
+            <!--         </mappings> -->
+	    <!--         <runTestCasesAsUnitTests>false</runTestCasesAsUnitTests> -->
+	    <!--         <serverSide>false</serverSide> -->
+	    <!--         <subPackageByFileName>false</subPackageByFileName> -->
+	    <!--         <testCases>false</testCases> -->
+	    <!--         <username>${hal.username}</username> -->
+	    <!--         <password>${hal.password}</password> -->
+	    <!--         <urls> -->
+	        	<!-- <url>${hal.submit.test.wsdl.url}</url> -->
+	        	<!-- <url>${hal.ref.test.wsdl.url}</url> -->
+	    <!--     	<url>${hal.search.test.wsdl.url}</url> -->
+	    <!--         </urls> -->
+	    <!--     </configuration> -->
+	    <!--     <executions> -->
+	    <!--         <execution> -->
+	    <!--     	<goals> -->
+	    <!--     	    <goal>wsdl2java</goal> -->
+	    <!--     	</goals> -->
+	    <!--         </execution> -->
+	    <!--     </executions> -->
+	    <!-- </plugin> -->
+	</plugins>
+    </build>
+
+    <properties>
+	<hal.username>test_ws</hal.username>
+	<hal.password>test</hal.password>
+	<!-- <hal.submit.test.wsdl.url>https://api-preprod.archives-ouvertes.fr/ws?wsdl</hal.submit.test.wsdl.url> -->
+    <hal.submit.test.wsdl.url>file:///d:/temp/halv3-import-wsdl.xml</hal.submit.test.wsdl.url>
+        <hal.submit.wsdl.url>https://api.archives-ouvertes.fr/ws?wsdl</hal.submit.wsdl.url>
+    </properties>
+
+</project>

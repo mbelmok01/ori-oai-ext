@@ -1,0 +1,66 @@
+Documentation du plugin HAL du module ori-oai-ext
+
+* URLs des WSDL HAL
+
+  - développement :
+    http://paol.ccsd.cnrs.fr/ws/submit.php?wsdl
+
+    http://paol.ccsd.cnrs.fr/ws/search.php?wsdl
+
+    http://paol.ccsd.cnrs.fr/ws/ref.php?wsdl
+
+  - production :
+    http://hal.archives-ouvertes.fr/ws/submit.php?wsdl
+
+    http://hal.archives-ouvertes.fr/ws/search.php?wsdl
+
+    http://hal.archives-ouvertes.fr/ws/ref.php?wsdl
+
+* Notes pour l'utilisation du framework *Axis 1*
+
+  - les classes générées le sont dans les packages :
+
+      - fr.archives_ouvertes.hal.ws.ref_php : référentiels (vocabulaires) HAL
+
+      - fr.archives_ouvertes.hal.ws.submit_php : dépôts de fiches/documents dans HAL
+
+      - fr.archives_ouvertes.hal.ws.search_php : recherche de références dans HAL
+
+  - les stubs sont :
+
+    - Hal_WebServices_ReferentielsBindingStub
+
+    - Hal_WebServices_SubmitBindingStub
+
+    - Hal_WebServices_SearchBindingStub
+
+  - remplacer dans ces stubs les appels
+    #+begin_src java
+    _call.setEncodingStyle(null);
+    #+end_src
+    par
+    #+begin_src java
+    _call.setEncodingStyle(org.apache.axis.Constants.URI_SOAP11_ENC);
+    #+end_src
+
+  - définir dans ces stubs une méthode :
+    #+begin_src java
+    public void setOperationNameSpaceURL(String ns) {
+    	operationsNameSpaceURL = ns;
+    }
+    #+end_src
+
+  - remplacer dans les stubs, au niveau de chacune des méthodes correspondant à une action du WS, les appels:
+    #+begin_src java
+      _call.setOperationName(
+        new javax.xml.namespace.QName(
+          "http://paol.ccsd.cnrs.fr/ws/submit.php", "upload"));
+    #+end_src
+    (cas du WS submit)
+    par
+    #+begin_src java
+      _call.setOperationName(
+        new javax.xml.namespace.QName(operationsNameSpaceURL, "upload"));
+    #+end_src
+    
+    

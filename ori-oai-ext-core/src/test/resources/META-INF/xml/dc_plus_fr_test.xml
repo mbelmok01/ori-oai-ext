@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<dcfr:dc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns:dcfr="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/"
+	 xmlns:dcterms="http://purl.org/dc/terms/">
+
+  <dc:identifier xsi:type="dcfr:hal_id"></dc:identifier>
+
+  <dc:identifier xsi:type="dcterms:URI"></dc:identifier>
+
+  <dc:identifier xsi:type="dcfr:local_id"></dc:identifier>
+
+  <dc:identifier xsi:type="dcfr:DOI"></dc:identifier>
+
+  <dc:identifier xsi:type="dcfr:PMID"></dc:identifier>
+
+  <dc:identifier xsi:type="dcfr:num_brevet"></dc:identifier>
+
+  <dc:type xsi:type="dcfr:publicationType"></dc:type>
+
+  <dc:type xsi:type="dcterms:DCMIType"></dc:type>
+  
+  <dc:description xsi:type="dcfr:version"></dc:description>
+  
+  <dc:language></dc:language>
+  
+  <dc:title xml:lang=""></dc:title>
+
+  <dc:creator xsi:type="dcfr:people" dcfr:appid="" dcfr:extid=""></dc:creator>
+  
+  <dc:subject xml:lang=""></dc:subject>
+
+  <dc:relation xsi:type="dcfr:file"></dc:relation>
+  
+  <dcterms:abstract xml:lang=""></dcterms:abstract>
+
+  <dcterms:created></dcterms:created>
+
+  <dcterms:modified></dcterms:modified>
+
+  <dcterms:available></dcterms:available>
+
+  <dcterms:valid></dcterms:valid>
+
+  <dcterms:dateSubmitted></dcterms:dateSubmitted>
+  
+  <dc:title xsi:type="dcfr:referenceTitle"></dc:title>
+
+  <dcterms:audience xsi:type="dcfr:referenceAudience"></dcterms:audience>
+
+  <dcterms:extent xsi:type="dcfr:referenceExtent"></dcterms:extent>
+
+  <dcterms:issued xsi:type="dcfr:referenceIssued"></dcterms:issued>
+
+  <dcterms:spatial xsi:type="dcfr:referenceSpatial"></dcterms:spatial>
+
+  <dc:publisher xsi:type="dcfr:referencePublisher"></dc:publisher>
+
+  <dc:relation xsi:type="dcfr:referenceRelation"></dc:relation>
+  
+  <dc:subject xsi:type="dcfr:HALkeyword"></dc:subject>
+
+  <dc:subject xsi:type="dcterms:MESH"></dc:subject>
+
+  <dc:subject xsi:type="dcterms:DDC"></dc:subject>
+
+  <dc:format></dc:format>
+
+  <dc:coverage></dc:coverage>
+
+  <dc:rights xml:lang=""></dc:rights>
+
+  <dc:contributor></dc:contributor>
+
+  <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="" dcfr:affid="" dcfr:extid=""></dc:contributor>
+
+  <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="" dcfr:affid="" dcfr:extid=""></dc:contributor>
+
+  <dc:contributor xsi:type="dcfr:funder"></dc:contributor>
+
+</dcfr:dc>

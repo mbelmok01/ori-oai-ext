@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+	<groupId>org.orioai</groupId>
+	<artifactId>ori-oai-ext</artifactId>
+        <version>2.0.0</version>
+    </parent>
+
+    <artifactId>ori-oai-ext-core</artifactId>
+    <packaging>jar</packaging>
+    <name>ori-oai-ext-core</name>
+
+    <dependencies>
+    	<dependency>
+    		<groupId>org.restlet.jee</groupId>
+    		<artifactId>org.restlet.ext.httpclient</artifactId>
+    		<version>2.0.5</version>
+    		<exclusions>
+    			<!-- to avoid conflict with solr httpclient -->
+    			<exclusion>
+    				<artifactId>httpclient</artifactId>
+    				<groupId>org.apache.httpcomponents</groupId>
+    			</exclusion>
+    			<exclusion>
+    				<artifactId>httpcore</artifactId>
+    				<groupId>org.apache.httpcomponents</groupId>
+    			</exclusion>
+    			<exclusion>
+    				<artifactId>httpmime</artifactId>
+    				<groupId>org.apache.httpcomponents</groupId>
+    			</exclusion>
+    		</exclusions>
+    	</dependency>
+    </dependencies>
+</project>

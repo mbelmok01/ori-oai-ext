@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dcfr:dc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/ dc_plus_fr_commentev5.xsd"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:dcfr="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/"
+ xmlns:dcterms="http://purl.org/dc/terms/">
+  <!-- le schéma oai_dc_plus_fr.xsd correspond à dcterms.xsd plus 1 élément racines + des attributs-->
+  <!-- NB : cette instance d'exemple ne correspond pas à une publication réelle -->
+  <!-- Les types d'identifiants (valeurs possibles de l'attribut xsi:type pour la balise dc:identifier) ne sont pas stockés dans le schéma mais dans un vocabulaire annexe -->
+  <!-- L'identifiant HAL est de la forme "id,n°version,passwd hal"-->
+  <dc:identifier xsi:type="dcfr:hal_id">paol-00070765,1,fgfzx0</dc:identifier>
+  <!-- <dc:identifier xsi:type="dcterms:URI">http://maven.apache.org/apache-maven.pdf</dc:identifier> -->
+  <!--identifiant base locale-->
+  <dc:identifier xsi:type="dcfr:local_id">oai:ori-oai-repository.univ-rennes1.fr:rennes1-ori-wf-1-623</dc:identifier>
+  <!--DOI de l'article chez l'éditeur-->
+  <!-- <dc:identifier xsi:type="dcfr:DOI">doi:10.1016/j.otohns.2006.02.010</dc:identifier> -->
+  <!--PMID-->
+  <dc:identifier xsi:type="dcfr:PMID"/>
+  <!-- Identifiant ArXiv  -->
+  <dc:identifier xsi:type="dcfr:arXiv"/>
+  <!-- numéro de brevet, si la ressource est de type brevet -->
+  <dc:identifier xsi:type="dcfr:num_brevet"/>
+  <!-- ISSN : structure du contenu XXXX-XXXX -->
+  <dc:identifier xsi:type="dcfr:ISSN" />
+  <!-- md correspondant à hal:typedoc. A associer avec un vocabuliare mappé aux codes HAL -->
+  <dc:type xsi:type="dcfr:publicationType">ART_SCL</dc:type>
+  <!--dc:type associé au dcmi type vocabulary-->
+  <dc:type xsi:type="dcterms:DCMIType">Text</dc:type>
+  <dc:description xsi:type="dcfr:version">2</dc:description>
+  <dc:language>EN</dc:language>
+  <dc:title xml:lang="en">Totostatus-24 of the cryomodules for the SPIRAL 2 superconducting
+  LINAC</dc:title>
+  
+  <!-- Pour les labos, les personnes : les lier à des référentiels extérieurs. Une personne / un labo doit pouvoir être lié à plusieurs référentiels. Ex : un auteur a un ID Sudoc, un ID LDAP...-->
+  <!-- dc:creator est de la forme "Nom, prénom" -->
+  <!-- Chaque auteur est identifié par un appid (= identifiant appartenance) pour faire le lien avec son laboratoire, et par un affid qui permet de faire le lien avec sa / ses tutelles -->
+  <!-- On renonce à ajouter un id permettant d'ordonner les auteurs par ordre d'importance : une telle notion risque de brouiller les échanges entre archives-->
+  <!-- Tous les attributs de dc:creator xsi:type="dcfr:people" sont optionnels -->
+  <!-- ex d'un auteur ayant des identifiants externes : les différentes valeurs de l'attribut dcfr:extid sont séparées par un espace-->
+  <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" 
+    dcfr:extid="exemple_id_ext_ldap exemple_id_ext_sudoc">Bosland, P.</dc:creator>
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119">Bernaudin, P.-E.</dc:creator> -->
+  <!-- ex d'un auteur appartenant à plusieurs labos : l'attribut dcfr:appid a plusieurs valeurs, séparées par un espace-->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119|hal-126" dcfr:affid="04">Devanz, G.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="01">G. Thomas-Madec, C.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Perolat, A.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Saugnac, H.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Olry, G.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Martinet, G.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Lutton, F.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Blivet, S.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-119" dcfr:affid="04">Longuevergne, D.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-126" dcfr:affid="06">Gomez-Martinez, Y.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-126" dcfr:affid="06">Vezzu, F.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-126" dcfr:affid="06">Fruneau, M.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="12648" dcfr:affid="04">Junquera, T.</dc:creator> -->
+  <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="hal-178" dcfr:affid="08">Ferdinand, R.</dc:creator> -->
+  
+  <!-- dc:contributor xsi:type="dcfr:appartenance" utilisé pour les LABOS, avec attribut dcfr:id pour faire le lien avec chaque auteur et un attribut affid pour faire le lien avec les tutelles.-->
+  <!-- Un dc:contributor de type "appartenance" ou "affiliation" est de la forme "Sigle, Nom". On n'indique pas les URL-->
+  <!-- Tous les attributs de dc:contributor xsi:type="dcfr:appartenance" sont optionnels -->
+  <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="hal-119" dcfr:affid="01|04|05" dcfr:extid="UMR8608">IPNO, Institut de Physique Nucléaire d'Orsay</dc:contributor>
+  <!-- <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="12648" -->
+  <!--   dcfr:adresse_labo="Complexo de Laboratórios Tecnológicos, Campus Universitário de Santiago, 3810-193 Aveiro" -->
+  <!--   dcfr:pays_labo="PT" -->
+  <!--   dcfr:affid="09">CICECO, Center for Research in Ceramics and Composite -->
+  <!--   Materials</dc:contributor> -->
+  <!-- <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="hal-126" dcfr:affid="01|04|06|07" dcfr:extid="UMR5821">LPSC, Laboratoire de Physique Subatomique et de Cosmologie</dc:contributor> -->
+  <!-- <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="hal-178" dcfr:affid="01|04|08" dcfr:extid="UPR3266">GANIL, Accélérateur National d'Ions Lourds</dc:contributor> -->
+
+  <!-- dc:contributor xsi:type="dcfr:affiliation" utilisé pour les TUTELLES-->
+  <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="01" dcfr:extid="exemple_id_ext">CNRS, France</dc:contributor>
+  <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="04">IN2P3,
+    France</dc:contributor>
+  <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="05">Université Paris Sud - Paris XI, France</dc:contributor>
+  <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="06">Université Joseph -->
+  <!--   Fourier - Grenoble I</dc:contributor> -->
+  <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="07">Institut Polytechnique de Grenoble</dc:contributor> -->
+  <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="08">CEA : DSM/GANIL</dc:contributor> -->
+  <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="09">Instituto Piaget, Portugal</dc:contributor> -->
+ <!-- équipes -->
+  <!-- <dc:contributor xsi:type="dcfr:equipe" dcfr:id="TRUC" dcfr:appid="hal-126">TRUC, Tiroir Rigolo d'Utilité Cosmique</dc:contributor> -->
+ <!-- sous-équipes -->
+  <!-- <dc:contributor xsi:type="dcfr:sous_equipe" dcfr:eqid="TRUC">CHOSE, Considérations Heuristiques sur l'Osmose Séquentielle des Electrons</dc:contributor> -->
+  <!-- A défaut d'un référentiel national des laboratoires, équipes, unités de recherche, etc... l'idée est lancée d'un référentiel commun à la communauté ORI, maintenu par chacun des établissements membres. La fonction de ce référentiel : décrire toutes les relations entre labos, équipes..., qualifier les labos, équipes... ex : X est une entreprise, Y une université française-->
+  <!-- La md dc:contributor garde son sens propre (contributeur intellectuel à l'oeuvre). Elle peut permettre d'indiquer des auteurs secondaires. Elle n'est pas versée dans HAL-->
+  <!-- <dc:contributor>Michel Lion</dc:contributor> -->
+  <dc:subject xml:lang="en">Physics</dc:subject>
+  <dc:subject xml:lang="en">Accelerator Physics</dc:subject>
+  <dc:subject xml:lang="fr">Physique</dc:subject>
+  <dc:subject xml:lang="fr">Physique des accélérateurs</dc:subject>
+  <!-- Référence aux fichiers dans l'archive locale, champ répétable. Pas besoin d'indiquer la localisation du(es) fichier(s) dans HAL : il(s) est(sont) exporté(s) avec la fiche-->
+  <!-- ordre des fichiers = ordre de lecture-->
+  <dc:relation xsi:type="dcfr:file">http://ori-oai.univ-toto.fr/docs/00/16/92/55/PDF/THOAKI04.PDF</dc:relation>
+ <!-- choix d'envoi vers HAL ou non : 4 valeurs possibles -->
+  <dcterms:accessRights xsi:type="dcfr:envoi_HAL">no_file_hal</dcterms:accessRights>
+  <dcterms:abstract xml:lang="en">The SPIRAL 2 superconducting linac is composed of 2 cryomodule
+    families. The first family in the low energy section, called cryomodules A, is composed of 12
+    cryomodules housing a single cavity at β=0.07. The second family in the high energy section,
+    called cryomodules B, is composed of 7 cryomodules housing 2 cavities at β=0.12. The frequency
+    of these QWR resonators is 88.050 MHz, and the design goal for the accelerating field Eacc is
+    6.5 MV/m. This paper describes the present status of the cryomodules
+    development.</dcterms:abstract>
+  <dcterms:abstract xml:lang="fr">L'accélérateur linéaire supraconducteur de SPIRAL 2 se compose de
+    deux familles de cryomodules. La première, dans la section de basse énergie, se compose de 12
+    cryomodules dits "A" contenant chacun une unique cavité à β=0.07. La seconde famille, dans la
+    section de haute énergie, se compose de 7 cryomodules dits "B" et contenant chacun deux cavités
+    à β=0.12. La fréquence de ces résonateurs quart d'onde est 88,050 MHz. Ils sont conçus pour
+    fournir un champ accélérateur de 6,5 MV/m. Le présent article décrit le statut actuel du
+    développement de ces cryomodules.</dcterms:abstract>
+  <dcterms:created>20010-05-27</dcterms:created>
+  <dcterms:modified>2007-05-27</dcterms:modified>
+  <!-- peut servir à indiquer la durée / date d'embargo-->
+  <dcterms:available></dcterms:available>
+  <!--+
+      | durée d'embargo chez HAL : valeurs possibles 
+      | listées dans un vocabulaire HAL obtenu par la
+      | méthode getRefDateVisible
+      +-->
+  <dcterms:available xsi:type="dcfr:distantServiceEmbargo"></dcterms:available>
+  <!-- peut servir à indiquer la durée d'archivage-->
+  <dcterms:valid/>
+  <!-- correspond à hal:submissiondate-->
+  <!-- <dcterms:dateSubmitted>2010-05-26</dcterms:dateSubmitted> -->
+  <!-- Référence bibliographique : pour les références aux revues, conférences, ouvrages-->
+  <!-- les éléments constituant cette référence doivent apparaître en un bloc unique dans l'éditeur, comme s'ils étaient tous les enfants d'un même père -->
+    <!-- referenceTitle suivi d'un dcfr:referenceDate non nul => 'titconf' chez HAL -->
+  <!-- <dc:title xsi:type="dcfr:referenceTitle">Proceedings of the Particle Accelerator Conference -->
+  <!--   07</dc:title> -->
+    <!-- date de la conférence -->
+    <!-- <dc:date xsi:type="dcfr:referenceDate">2007</dc:date> -->
+    <!-- referenceTitle non suivi d'un dcfr:referenceDate non nul => 'titouv' chez HAL -->
+  <dc:title xsi:type="dcfr:referenceTitle">Proceedings of the Particle Accelerator Journal</dc:title>
+  <!-- <dcterms:audience xsi:type="dcfr:referenceAudience">2</dcterms:audience> -->
+  <!-- dcterms:extent pour le nombre de pages. Recommandation de la LC voir http://www.loc.gov/marc/marc2dc.html#qualifiedlist -->
+  <dcterms:extent xsi:type="dcfr:referenceExtent">12</dcterms:extent>
+  <!-- dcterms:issued pour hal:year-->
+  <dcterms:issued xsi:type="dcfr:referenceIssued">2007</dcterms:issued>
+  <!-- dcterms:spatial pour hal:city et hal:country. La syntaxe est : ville, pays -->
+  <!-- Le code du pays est donné par le vocabulaire 'pays' du vocabulary -->
+  <!-- <dcterms:spatial xsi:type="dcfr:referenceSpatial">Paris, FR</dcterms:spatial> -->
+  <!-- éditeur de la revue-->
+  <!-- <dc:publisher xsi:type="dcfr:referencePublisher">L'éditeur commercial</dc:publisher> -->
+  <!-- URL d'accès à la revue-->
+  <!-- <dc:relation xsi:type="dcfr:referenceRelation">http://serveur.hote.com/editeur/revue</dc:relation> -->
+  <!-- éditeur scientifique de la revue... -->
+  <dc:contributor xsi:type="dcfr:referenceEdsci" />
+  <!-- directeur de la collection -->
+  <dc:contributor xsi:type="dcfr:referenceDircoll" />
+  <!-- série de la revue (ex. European Physical Journal D - Atomic, Molecular, Optical and Plasma Physics, qui est différent de The European Physical Journal E - Soft Matter and Biological Physics) -->
+  <dcterms:bibliographicCitation xsi:type="dcfr:referenceSerie"/>
+  <!-- volume -->
+  <dcterms:bibliographicCitation xsi:type="dcfr:referenceVolume"/>
+  <!-- numéro -->
+  <dcterms:bibliographicCitation xsi:type="dcfr:referenceIssue"/>
+  <!-- Le contenu de la balise dc:terms bibliographicCitation est calculé -->
+  <!-- <dcterms:bibliographicCitation>dc:creator xsi:type="dcfr:people", dc:title, dc:title -->
+  <!--   xsi:type="dcfr:referenceTitle", dcterms:bibliographicCitation xsi:type="referenceSerie", -->
+  <!--   dcterms:bibliographicCitation xsi:type="referenceVolume", dcterms:bibliographicCitation -->
+  <!--   xsi:type="referenceIssue"</dcterms:bibliographicCitation> -->
+<!-- fin de la référence bibliographique -->
+  <!-- Ajout d'éléments non obligatoires dans HAL -->
+  <!-- Les types de sujets (valeurs possibles de l'attribut xsi:type pour la balise dc:subject) ne sont pas stockés dans le schéma mais dans un vocabulaire annexe -->
+  <!-- sujets HAL : typer pour différencier des mots-clés libres. Indiquer le code HAL. La liste des mots-clés HAL doit donc être associée comme vocabulaire à cette métadonnée-->
+  <dc:subject xsi:type="dcfr:HALkeyword">PHYS:NEXP</dc:subject>
+  <!-- Mots clés libres : utiliser au possible les dcterms (MESH, LCSH)-->
+  <dc:subject xsi:type="dcterms:MESH" />
+  <dc:subject xsi:type="dcterms:DDC"/>
+  <!-- dc:format en facultatif associé aux types MIME sélectionnés et "traduits" dans l'éditeur, non traduits dans la fiche XML. Il n'est pas recommandé de l'utiliser : comment faire le lien si différents fichiers = dc:relation avec différents formats ?-->
+  <dc:format>PDF</dc:format>
+  <!--<dcterms:extent>129 ko</dcterms:extent> pas utile tant que récupération de la donnée pas automatisée-->
+  <dc:coverage/>
+  <dc:rights xml:lang="fr">Droits réservés</dc:rights>
+  <dc:contributor xsi:type="dcfr:funder"/>
+  <!-- dc:description sans type est utilisé comme un champ de note -->
+  <dc:description/>
+</dcfr:dc>
+

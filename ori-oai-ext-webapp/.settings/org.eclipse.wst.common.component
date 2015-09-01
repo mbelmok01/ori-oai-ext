@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="ori-oai-ext-webapp">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="ori-oai-ext-hal-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ori-oai-ext-hal/ori-oai-ext-hal">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ori-oai-ext-core-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ori-oai-ext-core/ori-oai-ext-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ori-oai-ext-download-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ori-oai-ext-download/ori-oai-ext-download">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ori-oai-ext-apogee-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ori-oai-ext-apogee/ori-oai-ext-apogee">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="${app.name.deploy}"/>
+        <property name="java-output-path" value="/ori-oai-ext-webapp/target/classes"/>
+    </wb-module>
+</project-modules>

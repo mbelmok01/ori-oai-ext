@@ -1,0 +1,102 @@
+% Created 2011-12-19 lun. 12:24
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{hyperref}
+
+
+\title{Documentation du plugin HAL du module ori-oai-ext}
+\author{gneuvill}
+\date{19 décembre 2011}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\vspace*{1cm}
+
+\section{URLs des WSDL HAL}
+\label{sec-1}
+
+
+\begin{itemize}
+\item développement :
+    \href{http://paol.ccsd.cnrs.fr/ws/submit.php?wsdl}{http://paol.ccsd.cnrs.fr/ws/submit.php?wsdl}
+
+    \href{http://paol.ccsd.cnrs.fr/ws/search.php?wsdl}{http://paol.ccsd.cnrs.fr/ws/search.php?wsdl}
+
+    \href{http://paol.ccsd.cnrs.fr/ws/ref.php?wsdl}{http://paol.ccsd.cnrs.fr/ws/ref.php?wsdl}
+\item production :
+    \href{http://hal.archives-ouvertes.fr/ws/submit.php?wsdl}{http://hal.archives-ouvertes.fr/ws/submit.php?wsdl}
+
+    \href{http://hal.archives-ouvertes.fr/ws/search.php?wsdl}{http://hal.archives-ouvertes.fr/ws/search.php?wsdl}
+
+    \href{http://hal.archives-ouvertes.fr/ws/ref.php?wsdl}{http://hal.archives-ouvertes.fr/ws/ref.php?wsdl}
+\end{itemize}
+\section{Notes pour l'utilisation du framework \textbf{Axis 1}}
+\label{sec-2}
+
+
+\begin{itemize}
+\item les classes générées le sont dans les packages :
+
+\begin{itemize}
+\item fr.archives\_{}ouvertes.hal.ws.ref\_{}php : référentiels (vocabulaires) HAL
+\item fr.archives\_{}ouvertes.hal.ws.submit\_{}php : dépôts de fiches/documents dans HAL
+\item fr.archives\_{}ouvertes.hal.ws.search\_{}php : recherche de références dans HAL
+\end{itemize}
+
+\item les stubs sont :
+
+\begin{itemize}
+\item Hal\_{}WebServices\_{}ReferentielsBindingStub
+\item Hal\_{}WebServices\_{}SubmitBindingStub
+\item Hal\_{}WebServices\_{}SearchBindingStub
+\end{itemize}
+
+\item remplacer dans ces stubs les appels
+
+\begin{verbatim}
+_call.setEncodingStyle(null);
+\end{verbatim}
+
+
+    par
+
+\begin{verbatim}
+_call.setEncodingStyle(org.apache.axis.Constants.URI_SOAP11_ENC);
+\end{verbatim}
+\item définir dans ces stubs une méthode :
+
+\begin{verbatim}
+public void setOperationNameSpaceURL(String ns) {
+    operationsNameSpaceURL = ns;
+}
+\end{verbatim}
+\item remplacer dans les stubs, au niveau de chacune des méthodes correspondant à une action du WS, les appels:
+
+\begin{verbatim}
+_call.setOperationName(
+  new javax.xml.namespace.QName(
+    "http://paol.ccsd.cnrs.fr/ws/submit.php", "upload"));
+\end{verbatim}
+
+
+    (cas du WS submit)
+    par
+
+\begin{verbatim}
+_call.setOperationName(
+  new javax.xml.namespace.QName(operationsNameSpaceURL, "upload"));
+\end{verbatim}
+\end{itemize}
+
+\end{document}

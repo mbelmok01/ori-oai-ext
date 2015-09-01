@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<dcfr:dc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/ dc_plus_fr_commentev3.xsd"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns:dcfr="http://www.archives-ouvertes.fr/OAI/2.0/dc_plus_fr/"
+	 xmlns:dcterms="http://purl.org/dc/terms/">
+    
+    
+    <dc:identifier xsi:type="dcfr:hal_id">hal-01030344,1,ei0gg5</dc:identifier>
+
+    <!-- <dc:identifier xsi:type="dcterms:URI">http://hal.in2p3.fr/in2p3-00169255/en/</dc:identifier> -->
+
+    <!-- <dc:identifier xsi:type="dcfr:local_id">	oai:ori-oai-repository.univ-rennes1.fr:rennes1-ori-wf-1-623</dc:identifier> -->
+
+    <!-- <dc:identifier xsi:type="dcfr:DOI">doi:10.1016/j.otohns.2006.02.010 </dc:identifier> -->
+    
+    <!-- <dc:identifier xsi:type="dcfr:PMID"></dc:identifier> -->
+    
+    <!-- <dc:identifier xsi:type="dcfr:arXiv"></dc:identifier> -->
+    
+    <!-- <dc:identifier xsi:type="dcfr:num_brevet"></dc:identifier> -->
+    
+    
+    <!-- <dc:type xsi:type="dcfr:publicationType">COMM_ACT</dc:type> -->
+    
+    <!-- <dc:type xsi:type="dcterms:DCMIType">Text</dc:type> -->
+    
+    <!-- <dc:description xsi:type="dcfr:version">2</dc:description> -->
+    
+    <!-- <dc:language>en</dc:language> -->
+    
+    <!-- <dc:title xml:lang="en">Status of the cryomodules for the SPIRAL 2 superconducting LINAC</dc:title> -->
+
+    
+    
+    
+    
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XXX sudoc:XXX">Bosland, P.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno">Bernaudin, P.-E.</dc:creator> -->
+    
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno lpsc" dcfr:affid="04" dcfr:extid="ldap:XX1 sudoc:X1X">Devanz, G.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="01" dcfr:extid="ldap:XX2 sudoc:X2X">G. Thomas-Madec, C.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX3 sudoc:X3X">Perolat, A.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX4 sudoc:X4X">Saugnac, H.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX5 sudoc:X5X">Olry, G.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX6 sudoc:X6X">Martinet, G.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX7 sudoc:X7X">Lutton, F.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX8 sudoc:X8X">Blivet, S.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:XX9 sudoc:X9X">Longuevergne, D.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="lpsc" dcfr:affid="06" dcfr:extid="ldap:X1X sudoc:1XX">Gomez-Martinez, Y.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="lpsc" dcfr:affid="06" dcfr:extid="ldap:X2X sudoc:2XX">Vezzu, F.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="lpsc" dcfr:affid="06" dcfr:extid="ldap:X3X sudoc:3XX">Fruneau, M.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ipno" dcfr:affid="04" dcfr:extid="ldap:X4X sudoc:4XX">Junquera, T.</dc:creator> -->
+    <!-- <dc:creator xsi:type="dcfr:people" dcfr:appid="ganil" dcfr:affid="08" dcfr:extid="ldap:X5X sudoc:5XX">Ferdinand, R.</dc:creator> -->
+    
+    <!-- <dc:contributor>Michel Lion</dc:contributor> -->
+    
+    
+    
+    
+    <!-- <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="ipno" dcfr:extid="YY1">IPNO, Institut de Physique Nucléaire d'Orsay</dc:contributor> -->
+    <!-- <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="lpsc" dcfr:extid="YY2">LPSC, Laboratoire de Physique Subatomique et de Cosmologie</dc:contributor> -->
+    <!-- <dc:contributor xsi:type="dcfr:appartenance" dcfr:id="ganil" dcfr:extid="YY3">GANIL, Accélérateur National d'Ions Lourds</dc:contributor> -->
+    
+    <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="01" dcfr:extid="ZZ1">CNRS : UMR8608, France</dc:contributor> -->
+    <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="02" dcfr:extid="ZZ2">CNRS : UMR5821</dc:contributor> -->
+    <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="03" dcfr:extid="ZZ3">CNRS : UMR6415</dc:contributor>-\-> -->
+    <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="04" dcfr:extid="ZZ4">IN2P3, France</dc:contributor> -->
+    
+    <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="06" dcfr:extid="ZZ6">Université Joseph Fourier - Grenoble I</dc:contributor> -->
+    
+    <!-- <dc:contributor xsi:type="dcfr:affiliation" dcfr:id="08" dcfr:extid="ZZ8">CEA : DSM/GANIL</dc:contributor> -->
+    
+    
+    
+    <!-- <dc:subject xml:lang="en">Physics</dc:subject> -->
+    <!-- <dc:subject xml:lang="en">Accelerator Physics</dc:subject> -->
+    <!-- <dc:subject xml:lang="fr">Physique</dc:subject> -->
+    <!-- <dc:subject xml:lang="fr">Physique des accélérateurs</dc:subject> -->
+    
+    
+    
+    <!-- <dc:relation xsi:type="dcfr:file">http://ori-oai.univ-toto.fr/docs/00/16/92/55/PDF/THOAKI04.PDF</dc:relation> -->
+    
+    
+    
+    <!-- <dcterms:abstract xml:lang="en">The SPIRAL 2 superconducting linac is composed of 2 cryomodule families. The first family in the low energy section, called cryomodules A, is composed of 12 cryomodules housing a single cavity at β=0.07. The second family in the high energy section, called cryomodules B, is composed of 7 cryomodules housing 2 cavities at β=0.12. The frequency of these QWR resonators is 88.050 MHz, and the design goal for the accelerating field Eacc is 6.5 MV/m. This paper describes the present status of the cryomodules development.</dcterms:abstract> -->
+    <!-- <dcterms:abstract xml:lang="fr">L'accélérateur linéaire supraconducteur de SPIRAL 2 se compose de deux familles de cryomodules. La première, dans la section de basse énergie, se compose de 12 cryomodules dits "A" contenant chacun une unique cavité à β=0.07. La seconde famille, dans la section de haute énergie, se compose de 7 cryomodules dits "B" et contenant chacun deux cavités à β=0.12. La fréquence de ces résonateurs quart d'onde est 88,050 MHz. Ils sont conçus pour fournir un champ accélérateur de 6,5 MV/m. Le présent article décrit le statut actuel du développement de ces cryomodules.</dcterms:abstract> -->
+    
+    <!-- <dcterms:created>2007-06-13</dcterms:created> -->
+    <!-- <dcterms:modified>2007-07-11</dcterms:modified> -->
+
+    <!-- <dcterms:available>2008-01-01</dcterms:available> -->
+
+    <!-- <dcterms:valid></dcterms:valid> -->
+
+    <!-- <dcterms:dateSubmitted>2007-09-03</dcterms:dateSubmitted> -->
+    
+    
+    <!-- <dc:title xsi:type="dcfr:referenceTitle">Proceedings of the Particle Accelerator Conference 07</dc:title> -->
+    <!-- <dcterms:audience xsi:type="dcfr:referenceAudience">international</dcterms:audience> -->
+    
+    <!-- <dcterms:extent xsi:type="dcfr:referenceExtent">12</dcterms:extent> -->
+    
+    <!-- <dcterms:issued xsi:type="dcfr:referenceIssued">2007</dcterms:issued> -->
+    
+    <!-- <dcterms:spatial xsi:type="dcfr:referenceSpatial">France</dcterms:spatial> -->
+    
+    <!-- <dc:publisher xsi:type="dcfr:referencePublisher"></dc:publisher> -->
+    
+    <!-- <dc:relation xsi:type="dcfr:referenceRelation"></dc:relation> -->
+    
+    <!-- <dc:date xsi:type="dcfr:referenceDate">2007</dc:date> -->
+    
+    
+    
+    
+    <!-- <dc:subject xsi:type="dcfr:HALkeyword">PHYS:NEXP</dc:subject> -->
+    
+    <!-- <dc:subject xsi:type="dcterms:MESH"></dc:subject> -->
+    
+    <!-- <dc:subject xsi:type="dcterms:DDC"></dc:subject> -->
+
+
+    <!-- <dc:format>pdf</dc:format> -->
+
+    <!-- <dc:coverage></dc:coverage> -->
+
+    <!-- <dc:rights xml:lang="fr">Droits réservés</dc:rights> -->
+
+    <!-- <dc:contributor xsi:type="dcfr:funder"></dc:contributor> -->
+    
+</dcfr:dc>
