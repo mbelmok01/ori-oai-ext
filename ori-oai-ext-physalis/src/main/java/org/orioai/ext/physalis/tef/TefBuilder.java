@@ -11,6 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.impl.Log4jLoggerAdapter;
 import org.springframework.core.io.Resource;
 
+
+/**
+ * @author Yohan Colmant
+ * @author Mohamed Belmokhtar
+ *
+ */
+
 public class TefBuilder {
     
     private Log4jLoggerAdapter log = (Log4jLoggerAdapter) LoggerFactory.getLogger(getClass());
@@ -92,8 +99,8 @@ public class TefBuilder {
         newXmlContent = replaceXmlContent(newXmlContent, "CODE_ECOLE_DOCTORALE", dto.CODE_ECOLE_DOCTORALE, userAttributesParams);
         newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_ECOLE_DOCTORALE", dto.LIBELLE_ECOLE_DOCTORALE, userAttributesParams);
         newXmlContent = replaceXmlContent(newXmlContent, "CODE_ECOLE_DOCTORALE", dto.CODE_ECOLE_DOCTORALE, userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "COTUTELLE", makeCotutelle(dto), userAttributesParams);
         
-        // newXmlContent = replaceXmlContent(newXmlContent, "COTUTELLE", makeCotutelle(dto), userAttributesParams);
         // newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_EQUIPE_RECHERCHE", dto.LIBELLE_EQUIPE_RECHERCHE, userAttributesParams);
         // newXmlContent = replaceXmlContent(newXmlContent, "CODE_EQUIPE_RECHERCHE", dto.CODE_EQUIPE_RECHERCHE, userAttributesParams); 
         // newXmlContent = replaceXmlContent(newXmlContent, "CONFIDENTIALITE", makeConfidentiality(dto), userAttributesParams);
@@ -178,15 +185,19 @@ public class TefBuilder {
      * @param dto
      * @return 
      */
+    
     private String makeCotutelle(TefDTO dto){
         StringBuffer sb = new StringBuffer();
+        
         String NOM_COTUTELLE = dto.getNOM_COTUTELLE();
-
+        //String CODE_COTUTELLE = dto.getCODE_COTUTELLE();
+        String CODE_COTUTELLE = "123456789";
+        
         if(NOM_COTUTELLE != null){
             sb.append("<tef:thesis.degree.grantor>");
             sb.append("<tef:nom>").append(NOM_COTUTELLE).append("</tef:nom>");
             sb.append("<tef:autoriteInterne>thesis.degree.grantor_2</tef:autoriteInterne>");
-            sb.append(makeAutoriteExterne("RNE", dto.getCODE_COTUTELLE()));
+            sb.append(makeAutoriteExterne("RNE", CODE_COTUTELLE));
             sb.append("</tef:thesis.degree.grantor>");
         } else
             sb.append("");
@@ -211,7 +222,38 @@ public class TefBuilder {
         return sb.toString();
     }
     
-    //////////////////////////////////////////////
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////
     
     /**
      * 

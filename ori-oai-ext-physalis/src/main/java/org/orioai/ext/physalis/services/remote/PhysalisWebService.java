@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Yohan Colmant
+ * @author Mohamed Belmokhtar
  *
  */
 @Service
@@ -32,17 +33,16 @@ public class PhysalisWebService implements IWebService {
     private @Value("${physalis.wsId}") String wsId;
     
     //authorized parameters names
-    public static final String USER_ID = "physalisUserId";
-    public static final String WS_USER = "physalisWsUser";
-    public static final String WS_PASSWORD = "physalisWsPassword";
     public static final String TEF_CREATOR = "physalisTefCreator";
     public static final String TEF_SUDOC_ETAB_ID = "physalisTefSudocEtabId";
     public static final String TEF_XML_CONTENT = "xmlContent";
-    public static final String USER_ATTRIBUTE_PREFIX = "userAttribute_";
     
     public static final String URL = "database_url";
     public static final String USER = "database_user";
     public static final String PASSWORD = "database_password";
+    
+    public static final String NOM_DOCTORANT = "nom_doctorant";
+    public static final String PRENOM_DOCTORANT = "prenom_doctorant";
     
     
     @Autowired

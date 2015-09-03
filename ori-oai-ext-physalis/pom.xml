@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.orioai</groupId>
-		<artifactId>ori-oai-ext</artifactId>
-		<version>2.0.0</version>
-	</parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+	<groupId>org.orioai</groupId>
+	<artifactId>ori-oai-ext</artifactId>
+        <version>2.0.0</version>
+    </parent>
 
-	<artifactId>ori-oai-ext-physalis</artifactId>
-	<packaging>jar</packaging>
-	<name>ori-oai-ext-physalis</name>
+    <artifactId>ori-oai-ext-physalis</artifactId>
+    <packaging>jar</packaging>
+    <name>ori-oai-ext-physalis</name>
 
-	<dependencies>
+    <dependencies>
 		<!-- ORI-OAI-EXT (sibling, i.e inter modules) dependencies ! -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>ori-oai-ext-core</artifactId>
-			<version>${project.version}</version>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>ori-oai-ext-core</artifactId>
+		    <version>${project.version}</version>
 		</dependency>
-		
-		
+	
+	
 		<!-- ************************************* -->
 		<!-- Apogee -->
 		<!-- ************************************* -->
 		<dependency>
-			<groupId>gouv.education.apogee</groupId>
-			<artifactId>apo-webservicesclient</artifactId>
-			<version>450lan</version>
-		</dependency>
+        	<groupId>gouv.education.apogee</groupId>
+        	<artifactId>apo-webservicesclient</artifactId>
+        	<version>450lan</version>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.axis</groupId>
 			<artifactId>axis</artifactId>
@@ -45,59 +45,48 @@
 			<artifactId>commons-discovery</artifactId>
 			<version>0.5</version>
 		</dependency>
-		<dependency>
-			<groupId>gouv.education</groupId>
-			<artifactId>apo-ws</artifactId>
-			<version>450la</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tuscany.sca.aggregation</groupId>
-			<artifactId>tuscany-binding-ws-runtime-axis2-aggregation</artifactId>
-			<version>2.0.1</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.orioai</groupId>
-			<artifactId>orioai-commons</artifactId>
-			<version>2.0.0-sup-e-educ-profile-alpha60-SNAPSHOT</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.servicemix.specs</groupId>
-			<artifactId>org.apache.servicemix.specs.jsr339-api-2.0</artifactId>
-			<version>2.4.0</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-jaxrs_2.0_spec</artifactId>
-			<version>1.0-alpha-1</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.servicemix.bundles</groupId>
-			<artifactId>org.apache.servicemix.bundles.dom4j</artifactId>
-			<version>1.6.1_5</version>
-			<type>jar</type>
-		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc5</artifactId>
-			<version>11.2.0.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jettison</groupId>
-			<artifactId>jettison</artifactId>
-			<version>1.3.1</version>
-		</dependency>
+        <dependency>
+            <groupId>gouv.education</groupId>
+            <artifactId>apo-ws</artifactId>
+            <version>450la</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tuscany.sca.aggregation</groupId>
+            <artifactId>tuscany-binding-ws-runtime-axis2-aggregation</artifactId>
+            <version>2.0.1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.orioai</groupId>
+            <artifactId>orioai-commons</artifactId>
+            <version>2.0.0-sup-e-educ-profile-alpha60-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.specs</groupId>
+            <artifactId>org.apache.servicemix.specs.jsr339-api-2.0</artifactId>
+            <version>2.4.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jaxrs_2.0_spec</artifactId>
+            <version>1.0-alpha-1</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.dom4j</artifactId>
+            <version>1.6.1_5</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 
-	</dependencies>
-
-	<build>
-		<plugins>
-			
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            
+	</plugins>
+    </build>
 
 </project>

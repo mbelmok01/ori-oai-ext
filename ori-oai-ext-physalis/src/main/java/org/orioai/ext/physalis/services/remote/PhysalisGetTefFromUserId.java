@@ -9,7 +9,6 @@ import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ import org.orioai.ext.core.services.AbstractWSOperation;
 import org.orioai.ext.physalis.tef.TefBuilder;
 import org.orioai.ext.physalis.tef.TefDTO;
 import org.orioai.ws.ext.beans.WSOperationBean;
-import org.orioai.ws.ext.exceptions.MethodExecutionException;
+import org.orioai.ws.ext.exceptions.MethodParametersException;
 import org.slf4j.LoggerFactory;
 import org.slf4j.impl.Log4jLoggerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author Yohan Colmant
+ * @author Mohamed Belmokhtar
  *
  */
 @Service
@@ -48,17 +48,18 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
     
     @Autowired
     private TefBuilder tefBuilder;
+
     
     private enum ParameterName {
-        USER_ID(PhysalisWebService.USER_ID),
-        WS_USER(PhysalisWebService.WS_USER),
-        WS_PASSWORD(PhysalisWebService.WS_PASSWORD),
         TEF_CREATOR(PhysalisWebService.TEF_CREATOR),
         TEF_SUDOC_ETAB_ID(PhysalisWebService.TEF_SUDOC_ETAB_ID),
         TEF_XML_CONTENT(PhysalisWebService.TEF_XML_CONTENT),
         URL(PhysalisWebService.URL),
         USER(PhysalisWebService.USER),
-        PASSWORD(PhysalisWebService.PASSWORD);
+        PASSWORD(PhysalisWebService.PASSWORD),
+        NOM_DOCTORANT(PhysalisWebService.NOM_DOCTORANT),
+        PRENOM_DOCTORANT(PhysalisWebService.PRENOM_DOCTORANT);
+        
         
         public final String value;
         
@@ -82,7 +83,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
     
     
     @Override
-    public WSOperationBean execute(Map<String, String> wsMethodParams) throws MethodExecutionException {
+    public WSOperationBean execute(Map<String, String> wsMethodParams) throws MethodParametersException  {
         
         // checking parameters
         checkParameters(opId, ParameterName.getValues(), wsMethodParams);
@@ -92,18 +93,15 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         
         try {
             Map<String, String> userAttributesParams = new HashMap<String, String>();
-            for (String key : wsMethodParams.keySet()) {
-                if (key.startsWith(PhysalisWebService.USER_ATTRIBUTE_PREFIX)) {
-                    userAttributesParams.put(key.replaceFirst(PhysalisWebService.USER_ATTRIBUTE_PREFIX, ""), wsMethodParams.get(key));
-                }
-            }
             
-            this.connexionBD(wsMethodParams);
-            ResultSet queryResult = this.getTheseInfo();
-            ResultSetMetaData resultMeta = queryResult.getMetaData();
-            HashMap<String, String> attributes = this.parseQueryResult(queryResult);
+            this.openDatabase(wsMethodParams);
+            this.getThesisInformation(wsMethodParams.get(PhysalisWebService.NOM_DOCTORANT), wsMethodParams.get(PhysalisWebService.PRENOM_DOCTORANT));
+            this.getThesisSupervisor(attributes.get("ID_THESE"));
+            this.getDoctoralSchool(attributes.get("ID_THESE"));
+            this.getSupervisionJointEstablissement(attributes.get("ID_THESE"));
+            this.closeDatabase();
             
-            String xmlContent = makeTef(wsMethodParams.get(PhysalisWebService.TEF_CREATOR), wsMethodParams.get(PhysalisWebService.TEF_SUDOC_ETAB_ID), wsMethodParams.get(PhysalisWebService.USER_ID), wsMethodParams.get(PhysalisWebService.WS_USER), wsMethodParams.get(PhysalisWebService.WS_PASSWORD), wsMethodParams.get(PhysalisWebService.TEF_XML_CONTENT), userAttributesParams, attributes);
+            String xmlContent = makeTef(wsMethodParams.get(PhysalisWebService.TEF_CREATOR), wsMethodParams.get(PhysalisWebService.TEF_SUDOC_ETAB_ID), wsMethodParams.get(PhysalisWebService.TEF_XML_CONTENT), userAttributesParams, attributes);
             
             System.out.println("xmlContent = "+xmlContent);
             
@@ -111,16 +109,14 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
                 result.put("xmlContent", xmlContent);
                 result.put("successCode", "success");
             }
-            else {
-                log.warn(PhysalisWebService.USER_ID+"="+wsMethodParams.get(PhysalisWebService.USER_ID)+" :: xmlContent is NULL");
-            }
-        }
-        catch (WebBaseException e) {
+            
+        } catch (WebBaseException e) {
             e.printStackTrace();
-            log.warn(PhysalisWebService.USER_ID+"="+wsMethodParams.get(PhysalisWebService.USER_ID)+" :: "+e.getLastErrorMsg(), e);
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex) {
             Logger.getLogger(PhysalisGetTefFromUserId.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RemoteException ex) {
+        }
+        catch (RemoteException ex) {
             Logger.getLogger(PhysalisGetTefFromUserId.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JSONException ex) {
             Logger.getLogger(PhysalisGetTefFromUserId.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,29 +133,46 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
     /**
      * Create a new connection to the database.
      * The connexion stays opened during the process.
+     * @param wsMethodParams 
      */
-    public void connexionBD(Map<String, String> wsMethodParams){
+    public void openDatabase(Map<String, String> wsMethodParams){
         
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             conn = DriverManager.getConnection(wsMethodParams.get(PhysalisWebService.URL), wsMethodParams.get(PhysalisWebService.USER), wsMethodParams.get(PhysalisWebService.PASSWORD));
             
             state = conn.createStatement();
-            
         }catch(Exception e){
             System.out.println("Echec de la connexion à la base de données : " + wsMethodParams.get(PhysalisWebService.URL));
             System.out.println(e);
         }
     }
     
+    
     /**
-     *
-     * @return
-     * @throws SQLException
+     * Close the connexion to database
      */
-    private ResultSet getTheseInfo() throws SQLException {
+    private void closeDatabase() {
+        try {
+            conn.close();
+        }
+        catch(Exception e){
+            System.out.println("Echec lors de la fermeture de la base : "+e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+    /**
+     * 
+     * @param nom : PhD student Name
+     * @param prenom PhD student firstname
+     * @throws SQLException 
+     */
+    private void getThesisInformation(String nom, String prenom) throws SQLException {
         
-        String query = "select * from INFORMATIONS_DOCTORANT WHERE NOM_USUEL LIKE '%BELMOKHTAR%' AND PRENOM LIKE '%MOHA%'";
+        String query = "select * from INFORMATIONS_DOCTORANT WHERE NOM_USUEL LIKE '%"+nom.toUpperCase()+"%'AND PRENOM LIKE'%"+prenom.toUpperCase()+"%'";
         
         try{
             queryResult = state.executeQuery(query);
@@ -167,16 +180,18 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             queryResult = null;
             System.out.println("La requête pour récupérer les information concernant une thèse a échoué : " + e.toString());
         }
-        return queryResult;
+        
+        this.parseQueryResult(queryResult);
     }
     
+    
     /**
-     *
-     * @param str Responds to thesis identifier
-     * @throws SQLException
+     * 
+     * @param str Thesis identifier
+     * @throws SQLException 
      */
-    private void getDirecteurThese(String str) throws SQLException {
-        
+    private void getThesisSupervisor(String str) throws SQLException {
+       
         ResultSet queryResult = null;
         
         String query = "Select * from GRHUM.DIRECTEUR_THESE GDT WHERE GDT.ID_THESE ="+ str;
@@ -198,12 +213,13 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         }
     }
     
+    
     /**
      * 
-     * @param str
+     * @param str Thesis identifier
      * @throws SQLException 
      */
-    private void getEcoleDoctorale(String str) throws SQLException {
+    private void getDoctoralSchool(String str) throws SQLException {
         
         ResultSet queryResult = null;
         
@@ -224,13 +240,36 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         }
     }
     
+    
     /**
-     * converts the QueryResult into a map
-     * @param queryResult
-     * @return HashMap <attribute, value>
-     * @throws SQLException
+     * 
+     * @param str Thesis identifier
      */
-    public HashMap<String, String> parseQueryResult(ResultSet queryResult) throws SQLException {
+    private void getSupervisionJointEstablissement(String str){
+        ResultSet queryResult = null;
+        
+        String query = "select * from GRHUM.ETABLISSEMENT_COTUTELLE where ID_THESE =" + str;
+        
+        try{
+            queryResult = state.executeQuery(query);
+            while(queryResult.next()){
+                
+                String etab_cotutelle = queryResult.getString("PERS_LIBELLE");
+                
+                attributes.put("ECOLE_COTUTELLE", etab_cotutelle);
+            }
+        }catch(Exception e){
+            System.out.println("La requete pour récupérer l'établissement de cotutuelle a échoué : " + e);
+        }
+    }
+    
+    
+    /**
+     * 
+     * @param queryResult SQL result to parse into HashMap.
+     * @throws SQLException 
+     */
+    private void parseQueryResult(ResultSet queryResult) throws SQLException {
         
         while(queryResult.next()){
             
@@ -300,8 +339,6 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             try{
                 String resume_fr = queryResult.getString("RESUME_FR");
                 attributes.put("RESUME_FR", resume_fr);
-                System.out.println("RESUME_FR : " +resume_fr );
-                
             }catch(Exception e){
                 System.out.println("Le champs RESUME_FR est vide");
             }
@@ -309,8 +346,6 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             try{
                 String date_soutenance = queryResult.getDate("DATE_SOUTENANCE").toString();
                 attributes.put("DATE_SOUTENANCE", date_soutenance);
-                System.out.println("DATE_SOUTENANCE : " +date_soutenance );
-                
             }catch(Exception e){
                 System.out.println("Le champs DATE_SOUTENANCE est vide");
             }
@@ -318,7 +353,6 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             try{
                 String lieu_soutenance = queryResult.getString("LIEU_SOUTENANCE");
                 attributes.put("LIEU_SOUTENANCE", lieu_soutenance);
-                
             }catch(Exception e){
                 System.out.println("Le champs LIEU_SOUTENANCE est vide");
             }
@@ -370,7 +404,6 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             try{
                 String domaine = queryResult.getString("DOMAINE");
                 attributes.put("DOMAINE", domaine);
-            
             }catch(Exception e){
                 System.out.println("Le champs DOMAINE est vide");
             }
@@ -383,7 +416,6 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             }
             
             try{
-                
                 String domaine = queryResult.getString("DOMAINE");
                 String add = queryResult.getString("CPT_EMAIL");
                 String concat = add + "@" + domaine;
@@ -394,43 +426,15 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         }
         
         queryResult.close();
-        
-        return attributes;
     }
     
-    /**
-     * built the XML file formatted into Tef
-     * @param creator the xml file creator
-     * @param sudoc the sudoc identifier
-     * @param codEtu the Phd student identifier
-     * @param wsUser
-     * @param wsPassword
-     * @param xmlContent the xml file received
-     * @param userAttributesParams
-     * @param attributes the hashmap of attributes <attribute, value>
-     * @return
-     * @throws RemoteException
-     * @throws WebBaseException
-     * @throws SQLException
-     * @throws JSONException
-     */
-    public String makeTef(String creator, String sudoc, String codEtu, String wsUser, String wsPassword, String xmlContent, Map<String, String> userAttributesParams, HashMap<String, String> attributes) throws RemoteException, WebBaseException, SQLException, JSONException {
-        
-        String newXmlContent = "";
-        InfoAdmEtuDTO etudiant = new InfoAdmEtuDTO();
-        
-        TefDTO dto = new TefDTO();
-        this.convertToDTO(etudiant, dto, attributes);
-        
-        newXmlContent = tefBuilder.buildTef(dto, creator, sudoc, xmlContent, userAttributesParams, attributes);
-        
-        return newXmlContent;
-    }
     
     /**
-     *
-     * @return This function builds the dto object
-     * @throws SQLException
+     * 
+     * @param etudiant
+     * @param dto
+     * @param attributes
+     * @throws SQLException 
      */
     public void convertToDTO(InfoAdmEtuDTO etudiant, TefDTO dto, HashMap<String, String> attributes) throws SQLException {
         
@@ -460,16 +464,16 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         dto.DISCIPLINE_WEB = attributes.get("DS_LIBELLE");
         
         
-        this.getDirecteurThese(attributes.get("ID_THESE"));
         dto.NOM_DIRECTEUR = attributes.get("NOM_DIRECTEUR");
         dto.PRENOM_DIRECTEUR = attributes.get("PRENOM_DIRECTEUR");
         
-        this.getEcoleDoctorale(attributes.get("ID_THESE"));
+        
         dto.LIBELLE_ECOLE_DOCTORALE = attributes.get("FDIP_MENTION");
         dto.CODE_ECOLE_DOCTORALE = attributes.get("FD.FDIP_CODE");
         // non pris en charge par physalis. Arrive dans la prochaine version
         // dto.DATE_FIN_CONFIDENTIALITE = formatDateToTef(convertApogeeDateToDate(these.getSuiviThese().getDatFinCfdThs()));
         
+        dto.NOM_COTUTELLE = attributes.get("ECOLE_COTUTELLE");
         // non pris en charge par physalis
         // dto.CODE_ETAB_SOUT = attributes.get("");
 
@@ -478,5 +482,35 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
 
         // dto.NOM_CODIRECTEUR = coDir1.getLibNomPatPer();
         // dto.PRENOM_CODIRECTEUR = coDir1.getLibPr1Per();
+    }
+    
+    
+    /**
+     * 
+     * @param creator
+     * @param sudoc
+     * @param codEtu
+     * @param wsUser
+     * @param wsPassword
+     * @param xmlContent
+     * @param userAttributesParams
+     * @param attributes
+     * @return
+     * @throws RemoteException
+     * @throws WebBaseException
+     * @throws SQLException
+     * @throws JSONException 
+     */
+    public String makeTef(String creator, String sudoc, String xmlContent, Map<String, String> userAttributesParams, HashMap<String, String> attributes) throws RemoteException, WebBaseException, SQLException, JSONException {
+        
+        String newXmlContent = "";
+        InfoAdmEtuDTO etudiant = new InfoAdmEtuDTO();
+        
+        TefDTO dto = new TefDTO();
+        this.convertToDTO(etudiant, dto, attributes);
+        
+        newXmlContent = tefBuilder.buildTef(dto, creator, sudoc, xmlContent, userAttributesParams, attributes);
+        
+        return newXmlContent;
     }
 }
