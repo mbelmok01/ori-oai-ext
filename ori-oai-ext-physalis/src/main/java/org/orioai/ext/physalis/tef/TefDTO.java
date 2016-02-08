@@ -37,7 +37,6 @@ public class TefDTO {
 	public String PRENOM_DIRECTEUR;
 	public String NOM_CODIRECTEUR;
 	public String PRENOM_CODIRECTEUR;
-	
 	public String TRAVAUX;
 	
 	public List<Jury> juries = new ArrayList<Jury> ();

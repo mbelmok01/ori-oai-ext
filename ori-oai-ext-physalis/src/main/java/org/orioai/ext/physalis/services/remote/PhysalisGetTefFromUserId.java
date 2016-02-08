@@ -57,8 +57,9 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         URL(PhysalisWebService.URL),
         USER(PhysalisWebService.USER),
         PASSWORD(PhysalisWebService.PASSWORD),
-        NOM_DOCTORANT(PhysalisWebService.NOM_DOCTORANT),
-        PRENOM_DOCTORANT(PhysalisWebService.PRENOM_DOCTORANT);
+        PHD_SUTDENT_NUMBER(PhysalisWebService.PHD_SUTDENT_NUMBER),
+        PHD_NAME(PhysalisWebService.PHD_NAME),
+        PHD_FIRST_NAME(PhysalisWebService.PHD_FIRST_NAME);
         
         
         public final String value;
@@ -95,7 +96,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             Map<String, String> userAttributesParams = new HashMap<String, String>();
             
             this.openDatabase(wsMethodParams);
-            this.getThesisInformation(wsMethodParams.get(PhysalisWebService.NOM_DOCTORANT), wsMethodParams.get(PhysalisWebService.PRENOM_DOCTORANT));
+            this.getThesisInformation(wsMethodParams.get(PhysalisWebService.PHD_SUTDENT_NUMBER));
             this.getThesisSupervisor(attributes.get("ID_THESE"));
             this.getDoctoralSchool(attributes.get("ID_THESE"));
             this.getSupervisionJointEstablissement(attributes.get("ID_THESE"));
@@ -170,9 +171,12 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
      * @param prenom PhD student firstname
      * @throws SQLException 
      */
-    private void getThesisInformation(String nom, String prenom) throws SQLException {
+    private void getThesisInformation(String numero_etudiant) throws SQLException {
         
-        String query = "select * from INFORMATIONS_DOCTORANT WHERE NOM_USUEL LIKE '%"+nom.toUpperCase()+"%'AND PRENOM LIKE'%"+prenom.toUpperCase()+"%'";
+        System.out.println("Parametre recu dans getThesisInformation : " + numero_etudiant);
+        //String query = "select * from INFORMATIONS_DOCTORANT WHERE NOM_USUEL LIKE '%"+nom.toUpperCase()+"%'AND PRENOM LIKE'%"+prenom.toUpperCase()+"%'";
+        
+        String query = "select * from INFORMATIONS_DOCTORANT WHERE ETUD_NUMERO="+numero_etudiant;
         
         try{
             queryResult = state.executeQuery(query);
@@ -246,6 +250,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
      * @param str Thesis identifier
      */
     private void getSupervisionJointEstablissement(String str){
+        
         ResultSet queryResult = null;
         
         String query = "select * from GRHUM.ETABLISSEMENT_COTUTELLE where ID_THESE =" + str;
@@ -270,6 +275,8 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
      * @throws SQLException 
      */
     private void parseQueryResult(ResultSet queryResult) throws SQLException {
+        
+        // For each field, we get its value, if it isn't present in the response, we said that the field is empty.
         
         while(queryResult.next()){
             
@@ -330,8 +337,8 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             }
             
             try{
-                String nationalite = queryResult.getString("L_NATIONALITE");
-                attributes.put("L_NATIONALITE", nationalite);
+                String l_nationalite = queryResult.getString("L_NATIONALITE");
+                attributes.put("L_NATIONALITE", l_nationalite);
             }catch(Exception e){
                 System.out.println("Le champs NATIONALITE est vide.");
             }
@@ -379,10 +386,10 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             }
             
             try{
-                String observation_soutenance = queryResult.getString("OBSERVATIONS_SOUTENANCE");
-                attributes.put("OBSERVATION_SOUTENANCE", observation_soutenance);
+                String observations_soutenance = queryResult.getString("OBSERVATIONS_SOUTENANCE");
+                attributes.put("OBSERVATIONS_SOUTENANCE", observations_soutenance);
             }catch(Exception e){
-                System.out.println("Le champs OBSERVATION_SOUTENANCE est vide");
+                System.out.println("Le champs OBSERVATIONS_SOUTENANCE est vide");
             }
             
             try{
@@ -391,6 +398,14 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
             }catch(Exception e){
                 System.out.println("Le champs CON_OBJET_COURT est vide");
             }
+            
+            try{
+                String con_objet_court_en = queryResult.getString("CON_OBJET_COURT_EN");
+                attributes.put("CON_OBJET_COURT_EN", con_objet_court_en);
+            }catch(Exception e){
+                System.out.println("Le champs CON_OBJET_COURT_EN est vide");
+            }
+            
             
             try{
                 String membres_jury = queryResult.getString("MEMBRES_JURY");

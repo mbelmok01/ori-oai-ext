@@ -37,13 +37,15 @@ public class PhysalisWebService implements IWebService {
     public static final String TEF_SUDOC_ETAB_ID = "physalisTefSudocEtabId";
     public static final String TEF_XML_CONTENT = "xmlContent";
     
+    // database connexion parameters
     public static final String URL = "database_url";
     public static final String USER = "database_user";
     public static final String PASSWORD = "database_password";
     
-    public static final String NOM_DOCTORANT = "nom_doctorant";
-    public static final String PRENOM_DOCTORANT = "prenom_doctorant";
-    
+    // Phd sutedent searched
+    public static final String PHD_NAME = "nom_doctorant";
+    public static final String PHD_FIRST_NAME = "prenom_doctorant";
+    public static final String PHD_SUTDENT_NUMBER = "numero_etudiant";
     
     @Autowired
     @Qualifier("physalis")

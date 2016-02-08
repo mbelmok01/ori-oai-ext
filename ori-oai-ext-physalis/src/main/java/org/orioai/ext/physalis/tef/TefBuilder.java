@@ -21,6 +21,7 @@ import org.springframework.core.io.Resource;
 public class TefBuilder {
     
     private Log4jLoggerAdapter log = (Log4jLoggerAdapter) LoggerFactory.getLogger(getClass());
+    
     private Resource nationalityResource;
     private Resource listDiplomeResource;
     protected Map<String, String> nationalities = new HashMap<String, String>();
@@ -221,36 +222,6 @@ public class TefBuilder {
             sb.append("");
         return sb.toString();
     }
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //////////////////////////////////////////////
