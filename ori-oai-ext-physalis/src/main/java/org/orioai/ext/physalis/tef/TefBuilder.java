@@ -2,11 +2,14 @@ package org.orioai.ext.physalis.tef;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.orioai.ext.physalis.beans.DirecteurThese;
+import org.orioai.ext.physalis.beans.MembreJury;
+import org.orioai.ext.physalis.beans.EtablissementCotutelle;
+import org.orioai.ext.physalis.beans.These;
 import org.slf4j.LoggerFactory;
 import org.slf4j.impl.Log4jLoggerAdapter;
 import org.springframework.core.io.Resource;
@@ -71,99 +74,40 @@ public class TefBuilder {
      * @return a new xml file completed
      * @throws JSONException 
      */
-    public String buildTef(TefDTO dto, String creator, String sudoc, String xmlContent, Map<String, String> userAttributesParams, HashMap<String, String> attributes) throws JSONException {
+    public String buildTef(String creator, String sudoc, String xmlContent, Map<String, String> userAttributesParams, These thesisObject) throws JSONException {
         
         String newXmlContent = xmlContent;
         
-        newXmlContent = replaceXmlContent(newXmlContent, "CODE_THESE", dto.CODE_THESE, userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "CODE_THESE", thesisObject.getID_THESE(), userAttributesParams);
         newXmlContent = replaceXmlContent(newXmlContent, "CREATOR", creator, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "TITRE", dto.TITRE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "CODE_ETUDIANT", attributes.get("ETUD_NUMERO"), userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "NOM_USUEL_ETUDIANT", dto.NOM_USUEL_ETUDIANT, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "NOM_ETUDIANT", dto.NOM_ETUDIANT, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "PRENOM_ETUDIANT", dto.PRENOM_ETUDIANT, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "DATE_NAISSANCE_ETUDIANT", dto.DATE_NAISSANCE_ETUDIANT, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "NATIONALITE", dto.NATIONALITE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "MAIL_PERSO", makeAutoriteExterne("mailPerso", dto.MAIL_PERSO!=null ? dto.MAIL_PERSO : userAttributesParams.get("MAIL_PERSO")), userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "MAIL_PRO", makeAutoriteExterne("mailPro", dto.MAIL_PRO), userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "DATE_SOUTENANCE", dto.DATE_SOUTENANCE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "DISCIPLINE", dto.DISCIPLINE_WEB, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_ETAB_SOUT", dto.LIBELLE_ETAB_SOUT, userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "TITRE", thesisObject.getSUJET_THESE(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "CODE_ETUDIANT", thesisObject.getETUD_NUMERO(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "NOM_USUEL_ETUDIANT", thesisObject.getNOM_USUEL(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "NOM_ETUDIANT", thesisObject.getNOM_PATRONYMIQUE(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "PRENOM_ETUDIANT", thesisObject.getPRENOM(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "DATE_NAISSANCE_ETUDIANT", thesisObject.getDATE_NAISSANCE(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "NATIONALITE", thesisObject.getL_NATIONALITE(), userAttributesParams);
+        //newXmlContent = replaceXmlContent(newXmlContent, "MAIL_PERSO", makeAutoriteExterne("mailPerso", thesisObject.getGetADRESSE_MAIL_Pro()!=null ? thesisObject.getADRESSE_MAIL() : userAttributesParams.get("MAIL_PERSO")), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "MAIL_PRO", thesisObject.getADRESSE_MAIL_Pro(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "DATE_SOUTENANCE", thesisObject.getDATE_SOUTENANCE(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "DISCIPLINE", thesisObject.getDS_LIBELLE(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_ETAB_SOUT", thesisObject.getLIEU_SOUTENANCE(), userAttributesParams);
         newXmlContent = replaceXmlContent(newXmlContent, "SUDOC", sudoc, userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "DIRECTEUR", makeDirecteurThese(thesisObject.getSupervisor()), userAttributesParams);
         newXmlContent = replaceXmlContent(newXmlContent, "TRAVAUX", "non", userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "NOM_DIRECTEUR", dto.NOM_DIRECTEUR, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "PRENOM_DIRECTEUR", dto.PRENOM_DIRECTEUR, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "JURY_LISTE_MEMBRES", makeJury(attributes.get("MEMBRES_JURY")), userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "JURY_LISTE_RAPPORTEURS", makeRapporteurs(attributes.get("MEMBRES_JURY")), userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "RESUME_FR", attributes.get("RESUME_FR"), userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_ECOLE_DOCTORALE", dto.LIBELLE_ECOLE_DOCTORALE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "CODE_ECOLE_DOCTORALE", dto.CODE_ECOLE_DOCTORALE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_ECOLE_DOCTORALE", dto.LIBELLE_ECOLE_DOCTORALE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "CODE_ECOLE_DOCTORALE", dto.CODE_ECOLE_DOCTORALE, userAttributesParams);
-        newXmlContent = replaceXmlContent(newXmlContent, "COTUTELLE", makeCotutelle(dto), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "JURY_LISTE_MEMBRES", makeMembreJuryThese(thesisObject.getMEMBRES_JURY()), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "JURY_LISTE_RAPPORTEURS", makeRapporteurThese(thesisObject.getMEMBRES_JURY()), userAttributesParams);   
+        newXmlContent = replaceXmlContent(newXmlContent, "RESUME_FR", thesisObject.getRESUME_FR(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_ECOLE_DOCTORALE", thesisObject.getDoctoralSchool().getFDIP_MENTION(), userAttributesParams);
+        newXmlContent = replaceXmlContent(newXmlContent, "CODE_ECOLE_DOCTORALE", thesisObject.getDoctoralSchool().getFD_FDIP_CODE(), userAttributesParams);
+        //newXmlContent = replaceXmlContent(newXmlContent, "COTUTELLE", makeCotutelle(thesisObject.getEtab_cotutelle()), userAttributesParams);
         
         // newXmlContent = replaceXmlContent(newXmlContent, "LIBELLE_EQUIPE_RECHERCHE", dto.LIBELLE_EQUIPE_RECHERCHE, userAttributesParams);
         // newXmlContent = replaceXmlContent(newXmlContent, "CODE_EQUIPE_RECHERCHE", dto.CODE_EQUIPE_RECHERCHE, userAttributesParams); 
-        // newXmlContent = replaceXmlContent(newXmlContent, "CONFIDENTIALITE", makeConfidentiality(dto), userAttributesParams);
         
         return newXmlContent;
     }
     
-    /**
-     * build jury xml snippet
-     * @param str
-     * @return a tag containing all members of the jury
-     * @throws JSONException 
-     */
-    private String makeJury(String str) throws JSONException{
-        
-        StringBuffer sb = new StringBuffer();
-        
-        JSONArray obj = new JSONArray(str);
-        
-        for(int i=0; i< obj.length(); i++){
-            JSONObject j = obj.getJSONObject(i);
-            
-           if(j.getString("role").equals("D_JR_PRES")){
-                sb.append("<").append("tef:presidentJury").append(">");
-                sb.append("<tef:nom>").append(j.get("nom")).append("</tef:nom>");
-                sb.append("<tef:prenom>").append(j.get("prenom")).append("</tef:prenom>");
-                sb.append("</").append("tef:presidentJury").append(">");
-                
-            } else if(j.getString("role").equals("D_JR_MEM")){
-                // si autre
-                sb.append("<").append("tef:membreJury").append(">");
-                sb.append("<tef:nom>").append(j.get("nom")).append("</tef:nom>");
-                sb.append("<tef:prenom>").append(j.get("prenom")).append("</tef:prenom>");
-                sb.append("</").append("tef:membreJury").append(">");
-            }
-        }
-        return sb.toString();
-    }
-    
-    /**
-     * build protractor xml snippet
-     * @param str
-     * @return
-     * @throws JSONException 
-     */
-    private String makeRapporteurs(String str) throws JSONException{
-        StringBuffer sb = new StringBuffer();
-        
-        JSONArray obj = new JSONArray(str);
-        
-        for(int i=0; i< obj.length(); i++){
-            JSONObject j = obj.getJSONObject(i);
-            
-            if (j.getString("role").equals("D_JURY_RAP")){
-                sb.append("<tef:rapporteur>");
-                sb.append("<tef:nom>").append(j.get("nom")).append("</tef:nom>");
-                sb.append("<tef:prenom>").append(j.get("prenom")).append("</tef:prenom>");
-                sb.append("</tef:rapporteur>");
-            }
-        }
-        return sb.toString();
-    }
     
     /**
      * build AutoriteExterne xml snippet
@@ -181,47 +125,72 @@ public class TefBuilder {
         return sb.toString();
     }
     
-    /**
-     * build cotutelle xml snippet
-     * @param dto
-     * @return 
-     */
-    
-    private String makeCotutelle(TefDTO dto){
+    private String makeDirecteurThese(ArrayList<DirecteurThese> dt){
         StringBuffer sb = new StringBuffer();
         
-        String NOM_COTUTELLE = dto.getNOM_COTUTELLE();
-        //String CODE_COTUTELLE = dto.getCODE_COTUTELLE();
-        String CODE_COTUTELLE = "123456789";
+        for(int i = 0; i<dt.size();i++){
+            sb.append("<tef:directeurThese><tef:nom>").append(dt.get(i).getNom()).append("</tef:nom><tef:prenom>").append(dt.get(i).getPrenom()).append("</tef:prenom></tef:directeurThese>");
+        }
         
-        if(NOM_COTUTELLE != null){
+        return sb.toString();
+    }
+    
+    private String makeRapporteurThese(ArrayList<MembreJury> al){
+        
+        StringBuffer sb = new StringBuffer();
+        
+        for(int i = 0; i<al.size();i++){
+            if(al.get(i).getStatus().equalsIgnoreCase("D_JURY_RAP"))
+            sb.append("<tef:rapporteur><tef:nom>").append(al.get(i).getNom()).append("</tef:nom><tef:prenom>").append(al.get(i).getPrenom()).append("</tef:prenom></tef:rapporteur>");
+        }
+        
+        System.out.println("SB : "+sb.toString());
+        return sb.toString();
+        
+                
+    }
+    
+    private String makeMembreJuryThese(ArrayList<MembreJury> al){
+        StringBuffer sb = new StringBuffer();
+        
+        for(int i = 0; i<al.size();i++){
+            System.out.println("Status : " +al.get(i).getStatus());
+            
+            if(al.get(i).getStatus().equalsIgnoreCase("D_JR_MEM") || al.get(i).getStatus().equalsIgnoreCase("D_JR_PRES"))
+            sb.append("<tef:membreJury><tef:nom>").append(al.get(i).getNom()).append("</tef:nom><tef:prenom>").append(al.get(i).getPrenom()).append("</tef:prenom></tef:membreJury>");
+        }
+        
+        System.out.println("SB : "+sb.toString());
+        return sb.toString();
+    }
+    
+    private String makeCoDirecteurThese(ArrayList<DirecteurThese> dt){
+        StringBuffer sb = new StringBuffer();
+        
+        if(dt.size()>1){
+            
+            for(int i = 1; i<dt.size();i++){
+                sb.append("<tef:directeurThese><tef:nom>").append(dt.get(i).getNom()).append("</tef:nom><tef:prenom>").append(dt.get(i).getPrenom()).append("</tef:prenom>");
+            }
+        }
+        return sb.toString();
+    }
+    
+    
+    private String makeCotutelle(ArrayList<EtablissementCotutelle> ec){
+        
+        StringBuffer sb = new StringBuffer();
+        
+        for(int i=0; i<ec.size(); i++){
             sb.append("<tef:thesis.degree.grantor>");
-            sb.append("<tef:nom>").append(NOM_COTUTELLE).append("</tef:nom>");
+            sb.append("<tef:nom>").append(ec.get(i).getnOM_COTUTELLE()).append("</tef:nom>");
             sb.append("<tef:autoriteInterne>thesis.degree.grantor_2</tef:autoriteInterne>");
-            sb.append(makeAutoriteExterne("RNE", CODE_COTUTELLE));
+            sb.append(makeAutoriteExterne("RNE", ec.get(i).getcODE_COTUTELLE()));
             sb.append("</tef:thesis.degree.grantor>");
-        } else
-            sb.append("");
+        }
         return sb.toString();
     }
     
-    /**
-     * build Confidentiality xml snippet
-     * @param dto
-     * @return 
-     */
-    private String makeConfidentiality(TefDTO dto){
-        StringBuffer sb = new StringBuffer();
-        String DATE_FIN_CONFIDENTIALITE = dto.DATE_FIN_CONFIDENTIALITE;
-
-        if(DATE_FIN_CONFIDENTIALITE != null){
-            sb.append("<metsRights:Constraints CONSTRAINTTYPE=\"TIME\">");
-            sb.append("<metsRights:ConstraintDescription>confidentialité ").append(dto.DATE_SOUTENANCE).append(" ").append(dto.DATE_FIN_CONFIDENTIALITE).append("</metsRights:ConstraintDescription>");
-            sb.append("</metsRights:Constraints>");
-        } else
-            sb.append("");
-        return sb.toString();
-    }
 
 
 //////////////////////////////////////////////

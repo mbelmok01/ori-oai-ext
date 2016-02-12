@@ -74,13 +74,9 @@
 						</tef:thesis.degree>
 						<tef:theseSurTravaux>_TRAVAUX_</tef:theseSurTravaux>
 						<tef:avisJury>oui</tef:avisJury>
-						<tef:directeurThese>
-							<tef:nom>_NOM_DIRECTEUR_</tef:nom>
-							<tef:prenom>_PRENOM_DIRECTEUR_</tef:prenom>
-						</tef:directeurThese>
-
-						_CODIRECTEUR_
-
+						
+						_DIRECTEUR_
+						
 						_JURY_LISTE_MEMBRES_
 
 						_JURY_LISTE_RAPPORTEURS_
