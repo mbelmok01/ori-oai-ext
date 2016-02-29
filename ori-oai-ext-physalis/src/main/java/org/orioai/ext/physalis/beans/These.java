@@ -265,20 +265,25 @@ public class These {
         
         System.out.println("entree dans setMEMBRES_JURY : "+ MEMBRES_JURY);
         
-        JSONArray obj = new JSONArray(MEMBRES_JURY);
+        if(MEMBRES_JURY.length()>1){
+            JSONArray obj = new JSONArray(MEMBRES_JURY);
         
-        for(int i=0; i< obj.length(); i++){
-            JSONObject j = obj.getJSONObject(i);
-            MembreJury mj = new MembreJury();
+            for(int i=0; i< obj.length(); i++){
+                JSONObject j = obj.getJSONObject(i);
+                MembreJury mj = new MembreJury();
             
-            mj.setNom(j.get("nom").toString());
-            mj.setPrenom(j.get("prenom").toString());
-            mj.setStatus(j.getString("role").toString());
-            al.add(mj);
-            System.out.println("mon membre jury : "+mj.toString());
+                mj.setNom(j.get("nom").toString());
+                mj.setPrenom(j.get("prenom").toString());
+                mj.setStatus(j.getString("role").toString());
+                al.add(mj);
+                System.out.println("mon membre jury : "+mj.toString());
+            }
+        
+            System.out.println(" liste des objets membres jury : " + al.toString());
+            this.MEMBRES_JURY = al;
+        } else {
+            this.MEMBRES_JURY = al;
         }
-        System.out.println(" liste des objets membres jury : " + al.toString());
-        this.MEMBRES_JURY = al;
     }
 
     public String getDOMAINE() {

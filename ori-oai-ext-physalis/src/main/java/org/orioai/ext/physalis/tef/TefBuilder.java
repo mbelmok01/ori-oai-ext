@@ -156,14 +156,20 @@ public class TefBuilder {
         for(int i = 0; i<al.size();i++){
             System.out.println("Status : " +al.get(i).getStatus());
             
-            if(al.get(i).getStatus().equalsIgnoreCase("D_JR_MEM") || al.get(i).getStatus().equalsIgnoreCase("D_JR_PRES"))
-            sb.append("<tef:membreJury><tef:nom>").append(al.get(i).getNom()).append("</tef:nom><tef:prenom>").append(al.get(i).getPrenom()).append("</tef:prenom></tef:membreJury>");
+            if(al.get(i).getStatus().equalsIgnoreCase("D_JR_MEM")){
+                sb.append("<tef:membreJury><tef:nom>").append(al.get(i).getNom()).append("</tef:nom><tef:prenom>").append(al.get(i).getPrenom()).append("</tef:prenom></tef:membreJury>");
+            }
+        
+            if(al.get(i).getStatus().equalsIgnoreCase("D_JR_PRES")) {
+                sb.append("<tef:presidentJury><tef:nom>").append(al.get(i).getNom()).append("</tef:nom><tef:prenom>").append(al.get(i).getPrenom()).append("</tef:prenom></tef:presidentJury>");
+            }
         }
         
         System.out.println("SB : "+sb.toString());
         return sb.toString();
     }
-    
+
+
     private String makeCoDirecteurThese(ArrayList<DirecteurThese> dt){
         StringBuffer sb = new StringBuffer();
         
