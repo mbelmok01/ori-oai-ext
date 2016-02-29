@@ -186,7 +186,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
     private These getThesisObject(String numero_etudiant) throws SQLException {
         
         System.out.println("Parametre recu dans getThesisInformation : " + numero_etudiant);
-        String query = "select * from INFORMATIONS_DOCTORANT WHERE ETUD_NUMERO="+numero_etudiant;
+        String query = "select * from RECHERCHE.V_INFORMATIONS_DOCTORANT WHERE ETUD_NUMERO="+numero_etudiant;
         
         try{
             queryResult = state.executeQuery(query);
@@ -211,7 +211,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         ArrayList al = new ArrayList();
         ResultSet queryResult = null;
         
-        String query = "Select * from GRHUM.DIRECTEUR_THESE GDT WHERE GDT.ID_THESE ="+ str;
+        String query = "Select * from RECHERCHE.V_DIRECTEUR_THESE GDT WHERE GDT.ID_THESE ="+ str;
         
         try{
             queryResult = state.executeQuery(query);
@@ -240,7 +240,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         
         ResultSet queryResult = null;
         
-        String query = "select * from GRHUM.ECOLE_DOCTORALE_THESE where ID_THESE =" + str;
+        String query = "select * from RECHERCHE.V_ECOLE_DOCTORALE_THESE where ID_THESE =" + str;
         DoctoralSchool ds = new DoctoralSchool();
         try{
             queryResult = state.executeQuery(query);
@@ -264,7 +264,7 @@ public class PhysalisGetTefFromUserId extends AbstractWSOperation {
         
         ResultSet queryResult = null;
         
-        String query = "select * from GRHUM.ETABLISSEMENT_COTUTELLE where ID_THESE =" + str;
+        String query = "select * from RECHERCHE.V_ETABLISSEMENT_COTUTELLE where ID_THESE =" + str;
         String etab_cotutelle = "";
         try{
             queryResult = state.executeQuery(query);
