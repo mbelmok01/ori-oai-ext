@@ -1,3 +1,15 @@
-grant select on GRHUM.RNE to RECHERCHE;
-
-grant select on GRHUM.VLANS to RECHERCHE;
+grant select on ACCORDS.AVENANT_DOM_SCIENT to RECHERCHE with grant option;
+grant select on ACCORDS.AVENANT to RECHERCHE with grant option;
+grant select on ACCORDS.CONTRAT to RECHERCHE with grant option;
+grant select on ACCORDS.CONTRAT_PARTENAIRE to RECHERCHE with grant option;
+grant select on GRHUM.DOMAINE_SCIENTIFIQUE to RECHERCHE with grant option;
+grant select on GRHUM.COMPTE to RECHERCHE with grant option;
+grant select on GRHUM.PAYS to RECHERCHE with grant option;
+grant select on GRHUM.ETUDIANT to RECHERCHE with grant option;
+grant select on GRHUM.INDIVIDU_ULR to RECHERCHE with grant option;
+grant select on GRHUM.VLANS to RECHERCHE with grant option;
+grant select on GRHUM.REPART_ASSOCIATION to RECHERCHE with grant option;
+grant select on GRHUM.ASSOCIATION to RECHERCHE with grant option;
+grant select on GRHUM.PERSONNE to RECHERCHE with grant option;
+grant select on GRHUM.STRUCTURE_ULR to RECHERCHE with grant option;
+grant select on SCOLARITE.SCOL_FORMATION_DIPLOME to RECHERCHE with grant option;
