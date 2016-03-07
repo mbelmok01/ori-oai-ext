@@ -1,4 +1,4 @@
-create or replace FUNCTION           RECUPERER_MEMBRES_JURY 
+create or replace FUNCTION           "RECHERCHE"."RECUPERER_MEMBRES_JURY" 
 (
   iddoctorant IN number 
 ) RETURN CHAR
