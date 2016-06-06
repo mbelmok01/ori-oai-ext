@@ -11,5 +11,6 @@ grant select on GRHUM.VLANS to RECHERCHE with grant option;
 grant select on GRHUM.REPART_ASSOCIATION to RECHERCHE with grant option;
 grant select on GRHUM.ASSOCIATION to RECHERCHE with grant option;
 grant select on GRHUM.PERSONNE to RECHERCHE with grant option;
+grant select on GRHUM.RNE to RECHERCHE with grant option;
 grant select on GRHUM.STRUCTURE_ULR to RECHERCHE with grant option;
 grant select on SCOLARITE.SCOL_FORMATION_DIPLOME to RECHERCHE with grant option;
